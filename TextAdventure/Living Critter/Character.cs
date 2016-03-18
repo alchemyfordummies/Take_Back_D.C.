@@ -1,4 +1,4 @@
-﻿using TextAdventure.Living_Critter.User_Character_Types;
+﻿﻿using TextAdventure.Living_Critter.User_Character_Types;
 using TextAdventure.Objects;
 
 namespace TextAdventure.Living_Critter
@@ -19,6 +19,7 @@ namespace TextAdventure.Living_Critter
       void SetEndurance(int e);
       void Mutate();
       int Attack();
+      void Explore(Point p, int i);
       int HitChance();
       int DamageDone();
   }
