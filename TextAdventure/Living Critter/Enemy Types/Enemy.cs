@@ -159,12 +159,9 @@ namespace TextAdventure.Living_Critter.Enemy_Types
             return hitChance >= randNum.Next(100) ? damage : 0;
         }
 
-        public void Explore(Point p)
-        {
-        }
-
         public void Mutate()
         {
+
         }
 
         public int HitChance()
