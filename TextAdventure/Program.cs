@@ -7,6 +7,7 @@ namespace TextAdventure
   {
     static void Main(string[] args)
     {
+
     }
   }
 }
