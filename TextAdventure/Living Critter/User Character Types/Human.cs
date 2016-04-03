@@ -6,97 +6,38 @@ namespace TextAdventure.Living_Critter.User_Character_Types
 {
     public class Human: Character
     {
-        protected int health;
-        protected int mutability;
-        protected int intelligence;
-        protected int brutishness;
-        protected int willpower;
-        protected int endurance;
-        protected int hitpoints;
+        protected int Health { get; set; }
+        protected int Mutability { get; set; }
+        protected int Intelligence { get; set; }
+        protected int Brutishness { get; set; }
+        protected int Willpower { get; set; }
+        protected int Endurance { get; set; }
+        protected int Hitpoints { get; set; }
 
-        public static int userLevel;
+        protected Random RandNum;
 
-        protected Random randNum;
+	    protected readonly string Name;
 
-        public Human()
+        public Human(string s)
         {
-            health = mutability = intelligence =
-            brutishness = willpower = endurance =
-            hitpoints = 10;
-            userLevel = 1;
-            randNum = new Random();
-        }
-
-        public int GetHealth()
-        {
-            return health;
-        }
-
-        public void SetHealth(int h)
-        {
-            health = h;
-        }
-
-        public int GetMutability()
-        {
-            return mutability;
-        }
-
-        public void SetMutability(int m)
-        {
-            mutability = m;
-        }
-
-        public int GetIntelligence()
-        {
-            return intelligence;
-        }
-
-        public void SetIntelligence(int i)
-        {
-            intelligence = i;
-        }
-
-        public int GetBrutishness()
-        {
-            return brutishness;
-        }
-
-        public void SetBrutishness(int b)
-        {
-            brutishness = b;
-        }
-
-        public int GetWillpower()
-        {
-            return willpower;
-        }
-
-        public void SetWillpower(int w)
-        {
-            willpower = w;
-        }
-
-        public int GetEndurance()
-        {
-            return endurance;
-        }
-
-        public void SetEndurance(int e)
-        {
-            endurance = e;
+            Health = Mutability = Intelligence =
+            Brutishness = Willpower = Endurance =
+            Hitpoints = 10;
+            Globals.UserLevel = 1;
+            RandNum = new Random();
+	        Name = s;
         }
 
         public void LevelUp()
         {
-            userLevel++;
+            Globals.UserLevel++;
         }
 
         public int Attack()
         {
             var hitChance = HitChance();
             var damage    = DamageDone();
-            return hitChance >= randNum.Next(100) ? damage : 0;
+            return hitChance >= RandNum.Next(100) ? damage : 0;
         }
 
         public void Explore(Point p)
@@ -111,20 +52,20 @@ namespace TextAdventure.Living_Critter.User_Character_Types
 
         public int HitChance()
         {
-            var percent = (willpower*0.1) + (intelligence*0.15) + (0.5 + userLevel*0.1);
+            var percent = (Willpower*0.1) + (Intelligence*0.15) + (0.5 + Globals.UserLevel*0.1);
             return (percent < 1.00) ? (int)percent*100 : 100;
         }
 
         public int DamageDone()
         {
-            var max = (intelligence*0.05) + (brutishness*0.1) + (userLevel*0.5);
-            return randNum.Next(0, (int)max);
+            var max = (Intelligence*0.05) + (Brutishness*0.1) + (Globals.UserLevel*0.5);
+            return RandNum.Next(0, (int)max);
         }
 
         public int DamageTaken(Enemy e)
         {
             var temp = e.Attack();
-            hitpoints = ((hitpoints - temp) < 0) ? 0 : hitpoints - temp;
+            Hitpoints = ((Hitpoints - temp) < 0) ? 0 : Hitpoints - temp;
             return temp;
         }
     }

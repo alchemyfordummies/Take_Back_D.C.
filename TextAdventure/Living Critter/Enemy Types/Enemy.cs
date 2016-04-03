@@ -6,79 +6,83 @@ namespace TextAdventure.Living_Critter.Enemy_Types
 {
     public class Enemy
     {
-        protected int health;
-        protected int mutability;
-        protected int intelligence;
-        protected int brutishness;
-        protected int willpower;
-        protected int endurance;
-        protected int hitpoints;
-        protected int level;
+        protected int Health { get; set; }
+        protected int Mutability { get; set; }
+        protected int Intelligence { get; set; }
+        protected int Brutishness { get; set; }
+        protected int Willpower { get; set; }
+        protected int Endurance { get; set; }
+        protected int Hitpoints { get; set; }
+        protected int Level { get; set; }
 
-        protected Random randNum;
+        protected Random RandNum;
 
-        public string type;
+        public string Type;
 
-        public static readonly string[] enemyTypes =
+        private Point _location;
+
+        public static readonly string[] EnemyTypes =
         {"General", "Major", "Lieutenant", "Sergeant", "Private"};
 
         public Enemy()
         {
-            type = "Private";
-            health = mutability = intelligence =
-                brutishness = willpower = endurance =
-                    hitpoints = 10;
-            level = 1;
-            randNum = new Random();
+            Type = "Private";
+            Health = Mutability = Intelligence =
+                Brutishness = Willpower = Endurance =
+                    Hitpoints = 10;
+            Level = 1;
+            RandNum = new Random();
         }
 
-        public Enemy(string name, int hLevel)
+        public Enemy(int hLevel, Point loc, string name = "Private")
         {
-            randNum = new Random();
+            RandNum = new Random();
+            _location = loc;
+            //put into subroutine, too long for constructor
             switch (name)
             {
                 case "General":
-                    type = name;
-                    health = hitpoints = 100;
-                    intelligence = 100;
-                    brutishness = 50;
-                    willpower = 90;
-                    endurance = 40;
-                    level = randNum.Next(hLevel - 1, level + 2);
+                    Type = name;
+                    Health = Hitpoints = 100;
+                    Intelligence = 100;
+                    Brutishness = 50;
+                    Willpower = 90;
+                    Endurance = 40;
+                    Level = RandNum.Next(hLevel - 1, Level + 2);
                     break;
                 case "Major":
-                    type = name;
-                    health = hitpoints = 85;
-                    intelligence = 80;
-                    brutishness = 45;
-                    willpower = 60;
-                    endurance = 50;
-                    level = randNum.Next(level - 1, level + 3);
+                    Type = name;
+                    Health = Hitpoints = 85;
+                    Intelligence = 80;
+                    Brutishness = 45;
+                    Willpower = 60;
+                    Endurance = 50;
+                    Level = RandNum.Next(Level - 1, Level + 3);
                     break;
                 case "Lieutenant":
-                    type = name;
-                    health = hitpoints = 70;
-                    intelligence = 65;
-                    brutishness = 40;
-                    willpower = 55;
-                    endurance = 65;
-                    level = randNum.Next(level - 2, level + 1);
+                    Type = name;
+                    Health = Hitpoints = 70;
+                    Intelligence = 65;
+                    Brutishness = 40;
+                    Willpower = 55;
+                    Endurance = 65;
+                    Level = RandNum.Next(Level - 2, Level + 1);
                     break;
                 case "Sergeant":
-                    type = name;
-                    health = hitpoints = 70;
-                    intelligence = 65;
-                    brutishness = 40;
-                    willpower = 55;
-                    endurance = 65;
-                    level = randNum.Next(level - 4, level + 4);
+                    Type = name;
+                    Health = Hitpoints = 70;
+                    Intelligence = 65;
+                    Brutishness = 40;
+                    Willpower = 55;
+                    Endurance = 65;
+                    Level = RandNum.Next(Level - 4, Level + 4);
                     break;
                 default:
-                    type = name;
-                    health = mutability = intelligence =
-                        brutishness = willpower = endurance =
-                            hitpoints = 10;
-                    level = hLevel < 3 ? 1 : randNum.Next(hLevel - 2, hLevel + 2);
+                    Type = name;
+                    Health = Mutability = Intelligence =
+                        Brutishness = Willpower = Endurance =
+                            Hitpoints = 10;
+                    Level = hLevel < 3 ? 1 : RandNum.Next(hLevel - 2, hLevel + 2);
                     break;
             }
         }
@@ -87,76 +91,11 @@ namespace TextAdventure.Living_Critter.Enemy_Types
         {
         }
 
-        public int GetHealth()
-        {
-            return health;
-        }
-
-        public void SetHealth(int h)
-        {
-            health = h;
-        }
-
-        public int GetMutability()
-        {
-            return mutability;
-        }
-
-        public void SetMutability(int m)
-        {
-            mutability = m;
-        }
-
-        public int GetIntelligence()
-        {
-            return intelligence;
-        }
-
-        public void SetIntelligence(int i)
-        {
-            intelligence = i;
-        }
-
-        public int GetBrutishness()
-        {
-            return brutishness;
-        }
-
-        public void SetBrutishness(int b)
-        {
-            brutishness = b;
-        }
-
-        public int GetWillpower()
-        {
-            return willpower;
-        }
-
-        public void SetWillpower(int w)
-        {
-            willpower = w;
-        }
-
-        public int GetEndurance()
-        {
-            return endurance;
-        }
-
-        public void SetEndurance(int e)
-        {
-            endurance = e;
-        }
-
-        public void LevelUp()
-        {
-            level++;
-        }
-
         public int Attack()
         {
             var hitChance = HitChance();
             var damage = DamageDone();
-            return hitChance >= randNum.Next(100) ? damage : 0;
+            return hitChance >= RandNum.Next(100) ? damage : 0;
         }
 
         public void Mutate()
@@ -166,20 +105,20 @@ namespace TextAdventure.Living_Critter.Enemy_Types
 
         public int HitChance()
         {
-            var percent = (willpower*0.1) + (intelligence*0.15) + (0.5 + level*0.1);
+            var percent = (Willpower*0.1) + (Intelligence*0.15) + (0.5 + Level*0.1);
             return (percent < 1.00) ? (int) percent*100 : 100;
         }
 
         public int DamageDone()
         {
-            var max = (intelligence*0.05) + (brutishness*0.1) + (level*0.5);
-            return randNum.Next(0, (int) max);
+            var max = (Intelligence*0.05) + (Brutishness*0.1) + (Level*0.5);
+            return RandNum.Next(0, (int) max);
         }
 
         public int DamageTaken(Human h)
         {
             var temp = h.Attack();
-            hitpoints = ((hitpoints - temp) < 0) ? 0 : hitpoints - temp;
+            Hitpoints = ((Hitpoints - temp) < 0) ? 0 : Hitpoints - temp;
             return temp;
         }
     }
