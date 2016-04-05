@@ -39,11 +39,14 @@ namespace TextAdventure
             }
 
             MapReader.PrintMap("RoomOneMap.txt");
-	        var one  = new Room(1);
-
+	        var one  = new Room(1, user);
+	        Console.WriteLine(user.GetLocation().GetX());
+	        Console.WriteLine(user.GetLocation().GetY());
 	        while (! End())
 	        {
-
+		        InputReader.StartReading(Console.ReadLine(), user, one);
+		        Console.WriteLine(user.GetLocation().GetX());
+                Console.WriteLine(user.GetLocation().GetY());
 	        }
         }
     }

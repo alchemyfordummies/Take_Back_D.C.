@@ -6,17 +6,19 @@ namespace TextAdventure.Living_Critter.User_Character_Types
 {
     public class Human: Character
     {
-        protected int Health { get; set; }
-        protected int Mutability { get; set; }
-        protected int Intelligence { get; set; }
-        protected int Brutishness { get; set; }
-        protected int Willpower { get; set; }
-        protected int Endurance { get; set; }
-        protected int Hitpoints { get; set; }
+	    protected int Health;
+	    protected int Mutability;
+	    protected int Intelligence;
+	    protected int Brutishness;
+	    protected int Willpower;
+	    protected int Endurance;
+	    protected int Hitpoints;
 
         protected Random RandNum;
 
 	    protected readonly string Name;
+
+	    protected Point Location;
 
         public Human(string s)
         {
@@ -27,6 +29,16 @@ namespace TextAdventure.Living_Critter.User_Character_Types
             RandNum = new Random();
 	        Name = s;
         }
+
+	    public Point GetLocation()
+	    {
+		    return Location;
+	    }
+
+	    public void SetLocation(Point p)
+	    {
+		    Location = p;
+	    }
 
         public void LevelUp()
         {
