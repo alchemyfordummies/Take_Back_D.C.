@@ -2,7 +2,7 @@
 
 namespace TextAdventure.Objects.Consumable.Container
 {
-    public class Barrel
+    public class Barrel: IContainer
     {
         private readonly string _type;
         private readonly int _capacity;

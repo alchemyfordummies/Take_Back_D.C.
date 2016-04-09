@@ -4,16 +4,17 @@ using TextAdventure.Objects;
 
 namespace TextAdventure.Living_Critter.Enemy_Types
 {
-    public class Enemy
+    public class Enemy: ICharacter
     {
-        protected int Health { get; set; }
-        protected int Mutability { get; set; }
-        protected int Intelligence { get; set; }
-        protected int Brutishness { get; set; }
-        protected int Willpower { get; set; }
-        protected int Endurance { get; set; }
-        protected int Hitpoints { get; set; }
-        protected int Level { get; set; }
+	    protected int Health;
+	    protected int Mutability;
+	    protected int Intelligence;
+	    protected int Brutishness;
+	    protected int Willpower;
+	    protected int Endurance;
+	    protected int Level;
+
+	    public int Hitpoints;
 
         protected Random RandNum;
 
@@ -29,7 +30,7 @@ namespace TextAdventure.Living_Critter.Enemy_Types
             Type = "Private";
             Health = Mutability = Intelligence =
                 Brutishness = Willpower = Endurance =
-                    Hitpoints = 10;
+                    Hitpoints = 6;
             Level = 1;
             RandNum = new Random();
         }
@@ -81,7 +82,7 @@ namespace TextAdventure.Living_Critter.Enemy_Types
                     Type = name;
                     Health = Mutability = Intelligence =
                         Brutishness = Willpower = Endurance =
-                            Hitpoints = 10;
+                            Hitpoints = 6;
                     Level = hLevel < 3 ? 1 : RandNum.Next(hLevel - 2, hLevel + 2);
                     break;
             }
@@ -91,11 +92,10 @@ namespace TextAdventure.Living_Critter.Enemy_Types
         {
         }
 
-        public int Attack()
+        public void Attack(Human h)
         {
-            var hitChance = HitChance();
-            var damage = DamageDone();
-            return hitChance >= RandNum.Next(100) ? damage : 0;
+	        h.Hitpoints -= DamageDone();
+	        if (h.Hitpoints < 0) h.Hitpoints = 0;
         }
 
         public void Mutate()
@@ -111,15 +111,8 @@ namespace TextAdventure.Living_Critter.Enemy_Types
 
         public int DamageDone()
         {
-            var max = (Intelligence*0.05) + (Brutishness*0.1) + (Level*0.5);
-            return RandNum.Next(0, (int) max);
-        }
-
-        public int DamageTaken(Human h)
-        {
-            var temp = h.Attack();
-            Hitpoints = ((Hitpoints - temp) < 0) ? 0 : Hitpoints - temp;
-            return temp;
+            var max = (Intelligence*0.075) + (Brutishness*0.2) + (Level);
+            return RandNum.Next(0, (int) max + 1);
         }
     }
 }

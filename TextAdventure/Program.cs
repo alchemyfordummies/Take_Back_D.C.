@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
 using TextAdventure.Living_Critter.User_Character_Types;
 using TextAdventure.Map;
 
@@ -18,7 +17,13 @@ namespace TextAdventure
 
 	    private static bool End()
 	    {
-		    return false;
+		    return Globals.IsGameDone;
+	    }
+
+	    private static void EndGame()
+	    {
+		    Console.WriteLine("GAME OVER");
+
 	    }
 
         private static void Main(string[] args)
@@ -30,9 +35,8 @@ namespace TextAdventure
             DialogReader.PrintDialog("Dialogue.txt");
 
             PrintLines(2);
-            //Thread.Sleep(10000);
             var counter = 0;
-            while (counter < 5)
+            while (counter < 7)
             {
                 Console.WriteLine(narration.ReadLine());
                 counter++;
@@ -42,12 +46,14 @@ namespace TextAdventure
 	        var one  = new Room(1, user);
 	        Console.WriteLine(user.GetLocation().GetX());
 	        Console.WriteLine(user.GetLocation().GetY());
-	        while (! End())
+	        while (!End())
 	        {
 		        InputReader.StartReading(Console.ReadLine(), user, one);
 		        Console.WriteLine(user.GetLocation().GetX());
-                Console.WriteLine(user.GetLocation().GetY());
+		        Console.WriteLine(user.GetLocation().GetY());
 	        }
+
+	        EndGame();
         }
     }
 }

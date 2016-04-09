@@ -1,6 +1,6 @@
 ﻿namespace TextAdventure.Objects.Consumable.Container
 {
-    public class Box
+    public class Box: IContainer
     {
 
     }

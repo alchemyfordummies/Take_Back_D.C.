@@ -4,7 +4,7 @@ using TextAdventure.Objects;
 
 namespace TextAdventure.Living_Critter.User_Character_Types
 {
-    public class Human: Character
+    public class Human: ICharacter
     {
 	    protected int Health;
 	    protected int Mutability;
@@ -12,7 +12,7 @@ namespace TextAdventure.Living_Critter.User_Character_Types
 	    protected int Brutishness;
 	    protected int Willpower;
 	    protected int Endurance;
-	    protected int Hitpoints;
+	    public int Hitpoints;
 
         protected Random RandNum;
 
@@ -45,11 +45,10 @@ namespace TextAdventure.Living_Critter.User_Character_Types
             Globals.UserLevel++;
         }
 
-        public int Attack()
+        public void Attack(Enemy e)
         {
-            var hitChance = HitChance();
-            var damage    = DamageDone();
-            return hitChance >= RandNum.Next(100) ? damage : 0;
+	        e.Hitpoints -= DamageDone();
+	        if (e.Hitpoints < 0) e.Hitpoints = 0;
         }
 
         public void Explore(Point p)
@@ -70,15 +69,8 @@ namespace TextAdventure.Living_Critter.User_Character_Types
 
         public int DamageDone()
         {
-            var max = (Intelligence*0.05) + (Brutishness*0.1) + (Globals.UserLevel*0.5);
-            return RandNum.Next(0, (int)max);
-        }
-
-        public int DamageTaken(Enemy e)
-        {
-            var temp = e.Attack();
-            Hitpoints = ((Hitpoints - temp) < 0) ? 0 : Hitpoints - temp;
-            return temp;
+            var max = (Intelligence*0.075) + (Brutishness*0.2) + (Globals.UserLevel);
+            return RandNum.Next(0, (int)max + 1);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace TextAdventure.Objects.Consumable.Container
 {
-    public class Chest
+    public class Chest: IContainer
     {
         private readonly string _type;
         private readonly int _capacity;
