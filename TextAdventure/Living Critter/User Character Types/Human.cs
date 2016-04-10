@@ -4,22 +4,37 @@ using TextAdventure.Objects;
 
 namespace TextAdventure.Living_Critter.User_Character_Types
 {
+    /// <summary>
+    /// Initiates a user Character with default attributes. This is who the user will control through the game.
+    /// </summary>
     public class Human: ICharacter
     {
-	    protected int Health;
+        /// <summary>Max number of hitpoints</summary>
+        protected int Health;
+        /// <summary>Determines how likely it is for the character to mutate</summary>
 	    protected int Mutability;
+        /// <summary>Part of the damage formula</summary>
 	    protected int Intelligence;
+        /// <summary>Bigger part of the damage formula</summary>
 	    protected int Brutishness;
+        /// <summary>Right now unused</summary>
 	    protected int Willpower;
+        /// <summary>Also unused right now</summary>
 	    protected int Endurance;
+        /// <summary>Sets the enemy's level, used in damage as well</summary>
 	    public int Hitpoints;
 
+        /// <summary>Starts as health, goes down with attacks</summary>
         protected Random RandNum;
 
+        /// <summary>This enemy's random number generator</summary>
 	    protected readonly string Name;
 
+        /// <summary>Selects the type of enemy this instance is</summary>
 	    protected Point Location;
 
+	    /// <summary>Initiates a human with default attributes</summary>
+	    /// <param name="s">The name the user inputted</param>
         public Human(string s)
         {
             Health = Mutability = Intelligence =
@@ -30,43 +45,40 @@ namespace TextAdventure.Living_Critter.User_Character_Types
 	        Name = s;
         }
 
+	    /// <returns>User's location</returns>
 	    public Point GetLocation()
 	    {
 		    return Location;
 	    }
 
+	    /// <param name="p">Changes the human's location to p</param>
 	    public void SetLocation(Point p)
 	    {
 		    Location = p;
 	    }
 
+	    /// <summary>Increments the user's level</summary>
         public void LevelUp()
         {
             Globals.UserLevel++;
         }
 
+	    /// <summary>Performs an attack by the human on an enemy</summary>
+	    /// <param name="e">The enemy being attacked</param>
         public void Attack(Enemy e)
         {
 	        e.Hitpoints -= DamageDone();
 	        if (e.Hitpoints < 0) e.Hitpoints = 0;
         }
 
-        public void Explore(Point p)
-        {
-
-        }
-
+        /// <summary>Yet to be determined</summary>
         public void Mutate()
         {
 
         }
 
-        public int HitChance()
-        {
-            var percent = (Willpower*0.1) + (Intelligence*0.15) + (0.5 + Globals.UserLevel*0.1);
-            return (percent < 1.00) ? (int)percent*100 : 100;
-        }
-
+	    /// <summary>Uses Intelligence, Brutishness, and Level to determine damage</summary>
+	    /// <returns>A number between 0 and the max calculated damage</returns>
         public int DamageDone()
         {
             var max = (Intelligence*0.075) + (Brutishness*0.2) + (Globals.UserLevel);

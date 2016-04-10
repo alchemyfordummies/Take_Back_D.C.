@@ -15,17 +15,23 @@ namespace TextAdventure
             }
         }
 
+	    /// <returns>If the game is finished</returns>
 	    private static bool End()
 	    {
 		    return Globals.IsGameDone;
 	    }
 
+	    /// <summary>Executes what's done at the end of the game</summary>
 	    private static void EndGame()
 	    {
 		    Console.WriteLine("GAME OVER");
 
 	    }
 
+	    /// <summary>Executes the program. First prompts for the character name.
+	    /// Next, it starts a reader for dialog and narration and prints those
+	    /// with some formatting. After that, it initializes room one, then
+	    /// parses the user input</summary>
         private static void Main(string[] args)
         {
 	        Console.WriteLine("What is your name?");
@@ -44,6 +50,7 @@ namespace TextAdventure
 
             MapReader.PrintMap("RoomOneMap.txt");
 	        var one  = new Room(1, user);
+		    //For my purposes to keep track of movement
 	        Console.WriteLine(user.GetLocation().GetX());
 	        Console.WriteLine(user.GetLocation().GetY());
 	        while (!End())

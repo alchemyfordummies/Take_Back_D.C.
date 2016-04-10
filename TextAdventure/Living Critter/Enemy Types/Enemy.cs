@@ -4,27 +4,37 @@ using TextAdventure.Objects;
 
 namespace TextAdventure.Living_Critter.Enemy_Types
 {
+    /// <summary>
+    /// Contains all the types of enemies, and when called, it will initiate a new enemy
+    /// in any given room.
+    /// </summary>
     public class Enemy: ICharacter
     {
+	    /// <summary>Max number of hitpoints</summary>
 	    protected int Health;
+        /// <summary>Determines how likely it is for the character to mutate</summary>
 	    protected int Mutability;
+        /// <summary>Part of the damage formula</summary>
 	    protected int Intelligence;
+        /// <summary>Bigger part of the damage formula</summary>
 	    protected int Brutishness;
+        /// <summary>Right now unused</summary>
 	    protected int Willpower;
+        /// <summary>Also unused right now</summary>
 	    protected int Endurance;
+        /// <summary>Sets the enemy's level, used in damage as well</summary>
 	    protected int Level;
 
+        /// <summary>Starts as health, goes down with attacks</summary>
 	    public int Hitpoints;
 
+        /// <summary>This enemy's random number generator</summary>
         protected Random RandNum;
 
+        /// <summary>Selects the type of enemy this instance is</summary>
         public string Type;
 
-        private Point _location;
-
-        public static readonly string[] EnemyTypes =
-        {"General", "Major", "Lieutenant", "Sergeant", "Private"};
-
+	    /// <summary>Initializes a default, lowest level enemy</summary>
         public Enemy()
         {
             Type = "Private";
@@ -35,10 +45,14 @@ namespace TextAdventure.Living_Critter.Enemy_Types
             RandNum = new Random();
         }
 
+	    /// <summary>Initializes a new enemy, given a name, a point, and the human's level
+	    /// to determine its attributes, as well as the name of the type of enemy</summary>
+	    /// <param name="hLevel">User's level</param>
+	    /// <param name="loc">Enemy's location</param>
+	    /// <param name="name">Name of Enemy type</param>
         public Enemy(int hLevel, Point loc, string name = "Private")
         {
             RandNum = new Random();
-            _location = loc;
             //put into subroutine, too long for constructor
             switch (name)
             {
@@ -88,27 +102,22 @@ namespace TextAdventure.Living_Critter.Enemy_Types
             }
         }
 
-        public void GenerateType(string name, int hLevel)
-        {
-        }
-
+	    /// <summary>Executes an attack by the human</summary>
+	    /// <param name="h">Takes a human to carry out the attack</param>
         public void Attack(Human h)
         {
 	        h.Hitpoints -= DamageDone();
 	        if (h.Hitpoints < 0) h.Hitpoints = 0;
         }
 
+        /// <summary>Yet to be determined</summary>
         public void Mutate()
         {
 
         }
 
-        public int HitChance()
-        {
-            var percent = (Willpower*0.1) + (Intelligence*0.15) + (0.5 + Level*0.1);
-            return (percent < 1.00) ? (int) percent*100 : 100;
-        }
-
+	    /// <summary>Uses intelligence, Brutishness, and level to determine damage</summary>
+	    /// <returns>A random number between zero and the max damage</returns>
         public int DamageDone()
         {
             var max = (Intelligence*0.075) + (Brutishness*0.2) + (Level);

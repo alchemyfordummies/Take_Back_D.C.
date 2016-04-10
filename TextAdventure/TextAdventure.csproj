@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>9CB3C5EA-2D0D-4FCC-B245-6EBF58C9F48B</ProjectGuid>
+    <ProjectGuid>{9CB3C5EA-2D0D-4FCC-B245-6EBF58C9F48B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TextAdventure</RootNamespace>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\TextAdventure.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,29 +62,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Living Critter" />
-    <Folder Include="Living Critter\Enemy Types" />
-    <Folder Include="Living Critter\User Character Types" />
-    <Folder Include="Map" />
-    <Folder Include="Numbers" />
-    <Folder Include="Objects" />
-    <Folder Include="Objects\Armor" />
-    <Folder Include="Objects\Consumable" />
-    <Folder Include="Objects\Consumable\Container" />
-    <Folder Include="Objects\Consumable\Food" />
-    <Folder Include="Objects\Consumable\Potion" />
-    <Folder Include="Objects\Weapon" />
-    <Folder Include="TextFiles" />
+    <Folder Include="Objects\Consumable\Food\" />
+    <Folder Include="Objects\Consumable\Potion\" />
+    <Folder Include="Objects\Weapon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Dialogue.txt">
-      <Link>Dialogue.txt</Link>
+      <Link>TextFiles\Dialogue.txt</Link>
     </Content>
     <Content Include="..\Narration.txt">
-      <Link>Narration.txt</Link>
+      <Link>TextFiles\Narration.txt</Link>
     </Content>
-    <Content Include="RoomOneSystemView.txt" />
-    <Content Include="RoomOneMap.txt" />
+    <Content Include="TextFiles\RoomOneMap.txt" />
+    <Content Include="TextFiles\RoomOneSystemView.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
