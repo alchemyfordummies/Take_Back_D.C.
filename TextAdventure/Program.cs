@@ -48,10 +48,11 @@ namespace TextAdventure
                 counter++;
             }
 
-            MapReader.PrintMap("RoomOneMap.txt");
 	        var one  = new Room(1, user);
-		    //For my purposes to keep track of movement
-	        Console.WriteLine(user.GetLocation().GetX());
+            MapReader.PrintMap("RoomOneMap.txt", one, user);
+
+            //For my purposes to keep track of movement
+            Console.WriteLine(user.GetLocation().GetX());
 	        Console.WriteLine(user.GetLocation().GetY());
 	        while (!End())
 	        {

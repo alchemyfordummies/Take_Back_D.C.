@@ -2,17 +2,20 @@
 
 namespace TextAdventure.Objects
 {
-    /// <summary>Defines a location with an x-coordinate, a y-coordinate, and accessibility</summary>
+    /// <summary>Defines a location with an x-coordinate, a y-coordinate, 
+    /// a character to represent the point on the map, and accessibility</summary>
 	public class Point
 	{
 		//Point attributes
 		private int _x;
 		private int _y;
 		private bool _accessible;
+        private char _mapChar;
 
 		///<summary>Default point</summary>
 		public Point()
 		{
+		    _mapChar = ' ';
 			_accessible = true;
 			_x = 0;
 			_y = 0;
@@ -20,8 +23,10 @@ namespace TextAdventure.Objects
 
 		/// <param name="a">x-coordinate of the point</param>
 		/// <param name="b">y-coordinate of the point</param>
-		public Point(int a, int b)
+		/// <param name="c">Character to represent this point on the map</param>
+		public Point(int a, int b, char c = ' ')
 		{
+		    _mapChar = ' ';
 			_accessible = true;
 			_x = a;
 			_y = b;
@@ -103,5 +108,23 @@ namespace TextAdventure.Objects
 			var secondHalf = Math.Pow((two._y - one._y), 2);
 			return Math.Sqrt(firstHalf + secondHalf);
 		}
+
+        /// <summary>
+        /// Returns the map character for this point
+        /// </summary>
+        /// <returns>The point's _mapChar</returns>
+        public char GetMapChar()
+        {
+            return _mapChar;
+        }
+
+        /// <summary>
+        /// Sets the _mapChar to the given character
+        /// </summary>
+        /// <param name="c">The character that _mapChar will be set to</param>
+        public void SetMapChar(char c)
+        {
+            _mapChar = c;
+        }
 	}
 }
