@@ -67,6 +67,7 @@ namespace TextAdventure.Map
 			}
 
 		    if (checkAgain) LookAround(point, r);
+		    CheckForExit(r, h);
 		}
 
 		/// <summary>Looks to see if it's possible to move forward</summary>
@@ -80,14 +81,9 @@ namespace TextAdventure.Map
 			var locations = r.GetLocations();
 
 			if (y + 1 >= r.GetHeight() - 1) return;
-			if (locations[x, y + 1] is Enemy)
-			{
-				Fight(x, y + 1, h, locations);
-			}
-			else if (((Point) locations[x, y + 1]).IsAccessible())
-			{
-				p.Forward();
-			}
+			if (locations[x, y + 1] is Enemy) Fight(x, y + 1, h, locations);
+            else if (new Point(x, y + 1) == r.GetExit()) NextRoom();
+			else if (((Point) locations[x, y + 1]).IsAccessible()) p.Forward();
 		}
 
 		/// <summary>Looks to see if it's possible to move backward</summary>
@@ -101,14 +97,9 @@ namespace TextAdventure.Map
 			var locations = r.GetLocations();
 
 			if (y - 1 <= 0) return;
-			if (locations[x, y - 1] is Enemy)
-			{
-				Fight(x, y - 1, h, locations);
-			}
-			else if (((Point) locations[x, y - 1]).IsAccessible())
-			{
-				p.Back();
-			}
+			if (locations[x, y - 1] is Enemy) Fight(x, y - 1, h, locations);
+            else if (new Point(x, y - 1) == r.GetExit()) NextRoom();
+            else if (((Point) locations[x, y - 1]).IsAccessible()) p.Back();
 		}
 
 		/// <summary>Looks to see if it's possible to move left</summary>
@@ -122,14 +113,9 @@ namespace TextAdventure.Map
 			var locations = r.GetLocations();
 
 			if (x - 1 <= 0) return;
-			if (locations[x - 1, y] is Enemy)
-			{
-				Fight(x - 1, y, h, locations);
-			}
-			else if (((Point) locations[x - 1, y]).IsAccessible())
-			{
-				p.Left();
-			}
+			if (locations[x - 1, y] is Enemy) Fight(x - 1, y, h, locations);
+            else if (new Point(x - 1, y) == r.GetExit()) NextRoom();
+            else if (((Point) locations[x - 1, y]).IsAccessible()) p.Left();
 		}
 
 		/// <summary>Looks to see if it's possible to move right</summary>
@@ -143,14 +129,9 @@ namespace TextAdventure.Map
 			var locations = r.GetLocations();
 
 			if (x + 1 >= r.GetWidth() - 1) return;
-			if (locations[x + 1, y] is Enemy)
-			{
-				Fight(x + 1, y, h, locations);
-			}
-			else if (((Point) locations[x + 1, y]).IsAccessible())
-			{
-				p.Right();
-			}
+			if (locations[x + 1, y] is Enemy) Fight(x + 1, y, h, locations);
+            else if (new Point(x + 1, y) == r.GetExit()) NextRoom();
+            else if (((Point) locations[x + 1, y]).IsAccessible()) p.Right();
 		}
 
 		/// <summary>Prompts the user for quitting, then quits on "yes"</summary>
@@ -160,11 +141,20 @@ namespace TextAdventure.Map
 			var s = Console.ReadLine();
 
 			if (s == null) return;
-			if (s.ToLower().Equals("yes"))
-			{
-				Environment.Exit(0);
-			}
+			if (s.ToLower().Equals("yes")) Environment.Exit(0);
 		}
+
+        public static void CheckForExit(Room r, Human h)
+        {
+            if (h.GetLocation().GetX() == r.GetExit().GetX() &&
+                h.GetLocation().GetY() == r.GetExit().GetY() - 1) Console.WriteLine("I think I see the exit");
+            else if (h.GetLocation().GetX() == r.GetExit().GetX() &&
+                h.GetLocation().GetY() == r.GetExit().GetY() + 1) Console.WriteLine("I think I see the exit");
+            else if (h.GetLocation().GetX() == r.GetExit().GetX() - 1 &&
+                h.GetLocation().GetY() == r.GetExit().GetY()) Console.WriteLine("I think I see the exit");
+            else if (h.GetLocation().GetX() == r.GetExit().GetX() + 1 &&
+                h.GetLocation().GetY() == r.GetExit().GetY()) Console.WriteLine("I think I see the exit");
+        }
 
 		/// <summary>Checks user surroundings for treasure or enemies</summary>
 		/// <param name="r">The room the user is in</param>
@@ -283,6 +273,14 @@ namespace TextAdventure.Map
 			else Globals.IsGameDone = true;
 
             Console.WriteLine(enemy.Hitpoints + ", " + h.Hitpoints);
+        }
+
+        /// <summary>
+        /// Sets up the next room for the player to get into
+        /// </summary>
+        public static void NextRoom()
+        {
+            Console.WriteLine("You made it to the next room, gg");
         }
 
         /// <summary>

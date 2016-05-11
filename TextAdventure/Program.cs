@@ -16,8 +16,8 @@ namespace TextAdventure
         }
 
 	    /// <returns>If the game is finished</returns>
-	    private static bool End()
-	    {
+	    private static bool End() 
+        {
 		    return Globals.IsGameDone;
 	    }
 
@@ -25,7 +25,9 @@ namespace TextAdventure
 	    private static void EndGame()
 	    {
 		    Console.WriteLine("GAME OVER");
-
+            System.Threading.Thread.Sleep(2000);
+            Console.WriteLine("you suck");
+            System.Threading.Thread.Sleep(100);
 	    }
 
 	    /// <summary>Executes the program. First prompts for the character name.

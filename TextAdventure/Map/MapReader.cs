@@ -10,7 +10,7 @@ namespace TextAdventure.Map
         private static char[][] _map;
 
         /// <summary>
-        /// 
+        /// Reads the map into an array of arrays to be printed
         /// </summary>
         /// <param name="s">String of the file to open</param>
         /// <param name="h">Height of the selected room</param>
