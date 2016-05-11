@@ -5,11 +5,21 @@ using TextAdventure.Objects.Consumable.Container;
 
 namespace TextAdventure.Map.Rooms {
     public class RoomOne {
-        public RoomOne(Human h, int _height, int _width, object[,] _locations,
+        /// <summary>
+        /// A method which defines each point in room one, done to shorten the main method
+        /// </summary>
+        /// <param name="h">Current user character</param>
+        /// <param name="_height">Height of the room</param>
+        /// <param name="_width">Width of the room</param>
+        /// <param name="_locations">Array of points in the room</param>
+        /// <param name="_roomOneWalls">Array of walls in the room</param>
+        /// <param name="_fileName">Room's file name</param>
+        /// <returns>The updated walls</returns>
+        public static Point[] MakeRoomOne(Human h, int _height, int _width, object[,] _locations,
             Point[] _roomOneWalls, string _fileName)
         {
             //Each wall in the array
-            _roomOneWalls = new[]
+            _roomOneWalls = new Point[46]
             {
                 new Point(5, 0, 'P'), new Point(4, 1, '|'), new Point(1, 2, '-'), new Point(2, 2, '-'),
                 new Point(3, 2, '-'), new Point(4, 2, '-'), new Point(1, 3, '|'), new Point(1, 4, '|'),
@@ -25,38 +35,7 @@ namespace TextAdventure.Map.Rooms {
                 new Point(14, 9, '-'), new Point(15, 9, '-'),
             };
 
-            _fileName = "RoomOneMap.txt";
-            //Sets the start point
-            h.SetLocation(new Point(5, 0));
-
-            _height = 10;
-            _width = 16;
-            _locations = new object[_width, _height];
-
-            //Initializes each point in the array
-            for (var i = 0; i < _height; i++) {
-                for (var j = 0; j < _width; j++) {
-                    _locations[j, i] = new Point(j, i);
-                }
-            }
-
-            //Makes each wall inaccessible
-            foreach (var i in _roomOneWalls) {
-                ((Point)_locations[i.GetX(), i.GetY()]).SetAccessible(false);
-            }
-
-            //Sets spawns for the enemies
-            _locations[6, 1] = new Enemy(Globals.UserLevel, new Point(6, 1));
-            _locations[6, 4] = new Enemy(Globals.UserLevel, new Point(6, 4));
-            _locations[2, 7] = new Enemy(Globals.UserLevel, new Point(2, 7));
-            _locations[10, 7] = new Enemy(Globals.UserLevel, new Point(10, 7), "Sergeant");
-            _locations[14, 8] = new Enemy(Globals.UserLevel, new Point(14, 8));
-            //sets spawns for the treasures
-            _locations[3, 3] = new Barrel(new Point(3, 3));
-            _locations[5, 8] = new Barrel(new Point(5, 8));
-            _locations[1, 8] = new Chest(new Point(1, 8));
-
-            //_locations[]
+            return _roomOneWalls;
         }
     }
 }
