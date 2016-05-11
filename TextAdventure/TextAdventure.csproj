@@ -78,7 +78,6 @@
     <Content Include="..\Narration.txt">
       <Link>TextFiles\Narration.txt</Link>
     </Content>
-    <Content Include="TextFiles\RoomOneMap.txt" />
     <Content Include="TextFiles\RoomOneSystemView.txt" />
     <Content Include="TextFiles\toDo.txt" />
   </ItemGroup>
