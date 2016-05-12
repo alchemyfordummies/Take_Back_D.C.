@@ -52,10 +52,10 @@ namespace TextAdventure
 
 	        var room = new[]
 	        {
-                new Room(1, user), new Room(2, user), new Room(3, user),
-                new Room(4, user), new Room(5, user)
+                new Room(5, user), new Room(4, user), new Room(3, user),
+                new Room(2, user), new Room(1, user)
 	        };
-	        var roomIndex = 0;
+	        var roomIndex = 4;
             MapReader.PrintMap("RoomOneMap.txt", room[roomIndex],  user);
 
             //For my purposes to keep track of movement
@@ -65,7 +65,7 @@ namespace TextAdventure
 	        {
 	            if (InputReader.StartReading(Console.ReadLine(), user, room[roomIndex]))
 	            {
-	                roomIndex++;
+	                roomIndex--;
                     MapReader.PrintMap("RoomOneMap.txt", room[roomIndex], user);
                     PrintLines(2);
                 }

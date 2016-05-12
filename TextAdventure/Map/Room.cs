@@ -19,10 +19,10 @@ namespace TextAdventure.Map
         private Point _exit;
 
         private Point[] _roomOneWalls;
-		private int[,] _roomTwoWalls;
-		private int[,] _roomThreeWalls;
-		private int[,] _roomFourWalls;
-		private int[,] _roomFiveWalls;
+		private Point[] _roomTwoWalls;
+		private Point[] _roomThreeWalls;
+		private Point[] _roomFourWalls;
+		private Point[] _roomFiveWalls;
 		//Text file with the room specification
 		private string _fileName;
 
@@ -60,26 +60,15 @@ namespace TextAdventure.Map
 		{
             _roomOneWalls = RoomOne.MakeRoomOne(h, _height, _width, _locations,
             _roomOneWalls, _fileName);
-
             _fileName = "RoomOneMap.txt";
             //Sets the start point
             h.SetLocation(new Point(5, 0));
 
             _height = 10;
             _width = 16;
-            _locations = new object[_width, _height];
+		    _locations = SetUpLocations(_locations);
 
-            //Initializes each point in the array
-            for (var i = 0; i < _height; i++) {
-                for (var j = 0; j < _width; j++) {
-                    _locations[j, i] = new Point(j, i);
-                }
-            }
-
-            //Makes each wall inaccessible
-            foreach (var i in _roomOneWalls) {
-                ((Point)_locations[i.GetX(), i.GetY()]).SetAccessible(false);
-            }
+		    SetInaccessibleWalls(_roomOneWalls);
 
             //Sets spawns for the enemies
             _locations[6, 1] = new Enemy(Globals.UserLevel, new Point(6, 1));
@@ -97,10 +86,38 @@ namespace TextAdventure.Map
 
 		private void MakeRoomTwo(Human h)
 		{
-		}
+            _roomTwoWalls = RoomTwo.MakeRoomTwo(h, _height, _width, _locations,
+            _roomTwoWalls, _fileName);
+		    _fileName = "RoomTwo.txt";
+            //sets user's location
+            h.SetLocation(new Point(1, 0));
+
+            _height = 5;
+            _width = 20;
+            _locations = SetUpLocations(_locations);
+
+            SetInaccessibleWalls(_roomTwoWalls);
+
+            //set enemy spawns
+		    _locations[2, 1] = new Enemy(Globals.UserLevel, new Point(2, 1));
+            _locations[5, 1] = new Enemy(Globals.UserLevel, new Point(5, 1));
+            _locations[11, 1] = new Enemy(Globals.UserLevel, new Point(11, 1));
+            _locations[12, 1] = new Enemy(Globals.UserLevel, new Point(12, 1));
+            _locations[13, 1] = new Enemy(Globals.UserLevel, new Point(13, 1));
+            _locations[12, 2] = new Enemy(Globals.UserLevel, new Point(12, 2));
+            _locations[1, 3] = new Enemy(Globals.UserLevel, new Point(1, 3));
+            _locations[2, 3] = new Enemy(Globals.UserLevel, new Point(2, 3));
+            _locations[5, 3] = new Enemy(Globals.UserLevel, new Point(5, 3));
+            _locations[14, 3] = new Enemy(Globals.UserLevel, new Point(14, 3));
+            //set treasure spawns
+            _locations[18, 3] = new Enemy(Globals.UserLevel, new Point(18, 3));
+
+            _exit = new Point(4, 4);
+        }
 
 		private void MakeRoomThree(Human h)
 		{
+		    
 		}
 
 		private void MakeRoomFour(Human h)
@@ -110,6 +127,28 @@ namespace TextAdventure.Map
 		private void MakeRoomFive(Human h)
 		{
 		}
+
+        public object[,] SetUpLocations(object[,] objs)
+        {
+            objs = new object[_width, _height];
+
+            //Initializes each point in the array
+            for (var i = 0; i < _height; i++) {
+                for (var j = 0; j < _width; j++) {
+                    objs[j, i] = new Point(j, i);
+                }
+            }
+
+            return objs;
+        }
+
+        private void SetInaccessibleWalls(Point[] points)
+        {
+            //Makes each wall inaccessible
+            foreach (var i in points) {
+                ((Point)_locations[i.GetX(), i.GetY()]).SetAccessible(false);
+            }
+        }
 
 		/// <returns>The filename</returns>
 		public string GetFileType()
