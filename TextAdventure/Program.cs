@@ -50,18 +50,25 @@ namespace TextAdventure
                 counter++;
             }
 
-	        var one  = new Room(1, user);
-            MapReader.PrintMap("RoomOneMap.txt", one, user);
+	        var room = new[]
+	        {
+                new Room(1, user), new Room(2, user), new Room(3, user),
+                new Room(4, user), new Room(5, user)
+	        };
+	        var roomIndex = 0;
+            MapReader.PrintMap("RoomOneMap.txt", room[roomIndex],  user);
 
             //For my purposes to keep track of movement
             Console.WriteLine(user.GetLocation().GetX());
 	        Console.WriteLine(user.GetLocation().GetY());
 	        while (!End())
 	        {
-	            if (InputReader.StartReading(Console.ReadLine(), user, one))
+	            if (InputReader.StartReading(Console.ReadLine(), user, room[roomIndex]))
 	            {
-	                
-	            }
+	                roomIndex++;
+                    MapReader.PrintMap("RoomOneMap.txt", room[roomIndex], user);
+                    PrintLines(2);
+                }
 		        Console.WriteLine(user.GetLocation().GetX());
 		        Console.WriteLine(user.GetLocation().GetY());
 	        }
