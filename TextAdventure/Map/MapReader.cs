@@ -35,6 +35,7 @@ namespace TextAdventure.Map
             StoreMap(s, height);
             Console.WriteLine();
             //this finds the location of the person, changes that spot to X
+            //STILL BREAKS SOMETIMES (11, 7) on room 1
             _map[r.GetHeight() - h.GetLocation().GetY() - 1][h.GetLocation().GetX()] = 'X';
             //Prints out the lines of the file character by character
             foreach (char[] t in _map)

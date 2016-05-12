@@ -13,16 +13,18 @@ namespace TextAdventure.Map
         private static bool _printed;
 
         /// <summary>Takes a string, a human, and a room and checks the input</summary>
-        public static void StartReading(string s, Human h, Room r)
+        public static bool StartReading(string s, Human h, Room r)
 		{
-			CheckInput(s, h, r);
+			return CheckInput(s, h, r);
 		}
 
 		/// <summary>Checks the input and performs the corresponing action</summary>
 		/// <param name="str">The user input, any type of command</param>
 		/// <param name="h">The user's character</param>
 		/// <param name="r">The room the user is in</param>
-		private static void CheckInput(string str, Human h, Room r)
+	   //not quite right at this point, it's returning from the wrong thing and I'm not sure where
+       //to return from
+		private static bool CheckInput(string str, Human h, Room r)
 		{
 		    bool checkAgain = false;
 			var point = h.GetLocation();
@@ -67,7 +69,7 @@ namespace TextAdventure.Map
 			}
 
 		    if (checkAgain) LookAround(point, r);
-		    CheckForExit(r, h);
+		    return CheckForExit(r, h);
 		}
 
 		/// <summary>Looks to see if it's possible to move forward</summary>
@@ -82,8 +84,8 @@ namespace TextAdventure.Map
 
 			if (y + 1 >= r.GetHeight() - 1) return;
 			if (locations[x, y + 1] is Enemy) Fight(x, y + 1, h, locations);
-            else if (new Point(x, y + 1) == r.GetExit()) NextRoom();
-			else if (((Point) locations[x, y + 1]).IsAccessible()) p.Forward();
+            else if (x == r.GetExit().GetX() && (y == r.GetExit().GetY() - 1)) NextRoom(r, h);
+            else if (((Point) locations[x, y + 1]).IsAccessible()) p.Forward();
 		}
 
 		/// <summary>Looks to see if it's possible to move backward</summary>
@@ -98,7 +100,7 @@ namespace TextAdventure.Map
 
 			if (y - 1 <= 0) return;
 			if (locations[x, y - 1] is Enemy) Fight(x, y - 1, h, locations);
-            else if (new Point(x, y - 1) == r.GetExit()) NextRoom();
+            else if (x == r.GetExit().GetX() && (y == r.GetExit().GetY() + 1)) NextRoom(r, h);
             else if (((Point) locations[x, y - 1]).IsAccessible()) p.Back();
 		}
 
@@ -114,7 +116,7 @@ namespace TextAdventure.Map
 
 			if (x - 1 <= 0) return;
 			if (locations[x - 1, y] is Enemy) Fight(x - 1, y, h, locations);
-            else if (new Point(x - 1, y) == r.GetExit()) NextRoom();
+            else if (x == r.GetExit().GetX() + 1 && (y == r.GetExit().GetY())) NextRoom(r, h);
             else if (((Point) locations[x - 1, y]).IsAccessible()) p.Left();
 		}
 
@@ -130,7 +132,7 @@ namespace TextAdventure.Map
 
 			if (x + 1 >= r.GetWidth() - 1) return;
 			if (locations[x + 1, y] is Enemy) Fight(x + 1, y, h, locations);
-            else if (new Point(x + 1, y) == r.GetExit()) NextRoom();
+            else if (x == r.GetExit().GetX() - 1 && (y == r.GetExit().GetY())) NextRoom(r, h);
             else if (((Point) locations[x + 1, y]).IsAccessible()) p.Right();
 		}
 
@@ -278,9 +280,11 @@ namespace TextAdventure.Map
         /// <summary>
         /// Sets up the next room for the player to get into
         /// </summary>
-        public static void NextRoom()
+        public static bool NextRoom(Room r, Human h)
         {
-            Console.WriteLine("You made it to the next room, gg");
+            Console.WriteLine("Made it to the next floor. Let's hope this one goes as smoothly as " +
+                              "the first one...");
+            return true;
         }
 
         /// <summary>

@@ -58,7 +58,10 @@ namespace TextAdventure
 	        Console.WriteLine(user.GetLocation().GetY());
 	        while (!End())
 	        {
-		        InputReader.StartReading(Console.ReadLine(), user, one);
+	            if (InputReader.StartReading(Console.ReadLine(), user, one))
+	            {
+	                
+	            }
 		        Console.WriteLine(user.GetLocation().GetX());
 		        Console.WriteLine(user.GetLocation().GetY());
 	        }

@@ -16,7 +16,7 @@ namespace TextAdventure.Map
 
 		private object[,] _locations;
 
-        private Point exit;
+        private Point _exit;
 
         private Point[] _roomOneWalls;
 		private int[,] _roomTwoWalls;
@@ -92,7 +92,7 @@ namespace TextAdventure.Map
             _locations[5, 8] = new Barrel(new Point(5, 8));
             _locations[1, 8] = new Chest(new Point(1, 8));
 
-            exit = new Point(11, 6);
+            _exit = new Point(11, 6);
 		}
 
 		private void MakeRoomTwo(Human h)
@@ -138,7 +138,7 @@ namespace TextAdventure.Map
         /// <returns>Room one's exit</returns>
         public Point GetExit()
         {
-            return exit;
+            return _exit;
         }
 	}
 }
