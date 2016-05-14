@@ -16,6 +16,7 @@ namespace TextAdventure.Map
 
 		private object[,] _locations;
 
+        //exit spot and the user's start location
         private Point _exit;
         private Point _userLocation;
 
