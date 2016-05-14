@@ -7,6 +7,10 @@ namespace TextAdventure
 {
     internal class Program
     {
+        /// <summary>
+        /// Simple format function
+        /// </summary>
+        /// <param name="x">Number of empty lines to print</param>
         public static void PrintLines(int x)
         {
             for (var i = 0; i < x; i++)
@@ -42,6 +46,7 @@ namespace TextAdventure
             var narration = new StreamReader("Narration.txt");
             DialogReader.PrintDialog("Dialogue.txt");
 
+            //format, then prints some lines of narration
             PrintLines(2);
             var counter = 0;
             while (counter < 7)
@@ -50,12 +55,26 @@ namespace TextAdventure
                 counter++;
             }
 
+            /*Sets up each room and the user's location in each*/
+	        Room one, two, three, four, five;
 	        var room = new[]
 	        {
-                new Room(5, user), new Room(4, user), new Room(3, user),
-                new Room(2, user), new Room(1, user)
+                (five = new Room(5, user)), (four = new Room(4, user)),
+                (three = new Room(3, user)), (two = new Room(2, user)),
+                (one = new Room(1, user))
 	        };
+
+	        var location = new[]
+	        {
+                five.GetUserLocation(), four.GetUserLocation(),
+                three.GetUserLocation(), two.GetUserLocation(),
+                one.GetUserLocation()
+	        };
+            /*End setup*/
+
+            //sets up room one
 	        var roomIndex = 4;
+            user.SetLocation(location[roomIndex]);
             MapReader.PrintMap("RoomOneMap.txt", room[roomIndex],  user);
 
             //For my purposes to keep track of movement
@@ -63,12 +82,16 @@ namespace TextAdventure
 	        Console.WriteLine(user.GetLocation().GetY());
 	        while (!End())
 	        {
+                //if it hits an exit, goes to the next room, sets the new starting location, 
+                //and prints the map, adding a couple lines of space
 	            if (InputReader.StartReading(Console.ReadLine(), user, room[roomIndex]))
 	            {
 	                roomIndex--;
-                    MapReader.PrintMap("RoomOneMap.txt", room[roomIndex], user);
+                    user.SetLocation(location[roomIndex]);
+                    MapReader.PrintMap(room[roomIndex].GetFileName(), room[roomIndex], user);
                     PrintLines(2);
                 }
+
 		        Console.WriteLine(user.GetLocation().GetX());
 		        Console.WriteLine(user.GetLocation().GetY());
 	        }

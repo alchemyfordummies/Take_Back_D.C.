@@ -17,6 +17,7 @@ namespace TextAdventure.Map
 		private object[,] _locations;
 
         private Point _exit;
+        private Point _userLocation;
 
         private Point[] _roomOneWalls;
 		private Point[] _roomTwoWalls;
@@ -62,7 +63,7 @@ namespace TextAdventure.Map
             _roomOneWalls, _fileName);
             _fileName = "RoomOneMap.txt";
             //Sets the start point
-            h.SetLocation(new Point(5, 0));
+            _userLocation = new Point(5, 0);
 
             _height = 10;
             _width = 16;
@@ -84,13 +85,15 @@ namespace TextAdventure.Map
             _exit = new Point(11, 6);
 		}
 
+        /// <summary>Creates the second room</summary>
+		/// <param name="h">The user's character</param>
 		private void MakeRoomTwo(Human h)
 		{
             _roomTwoWalls = RoomTwo.MakeRoomTwo(h, _height, _width, _locations,
             _roomTwoWalls, _fileName);
-		    _fileName = "RoomTwo.txt";
+		    _fileName = "RoomTwoMap.txt";
             //sets user's location
-            h.SetLocation(new Point(1, 0));
+            _userLocation = new Point(1, 0);
 
             _height = 5;
             _width = 20;
@@ -128,6 +131,11 @@ namespace TextAdventure.Map
 		{
 		}
 
+        /// <summary>
+        /// Initializes the object array given to it as a bunch of points
+        /// </summary>
+        /// <param name="objs"></param>
+        /// <returns></returns>
         public object[,] SetUpLocations(object[,] objs)
         {
             objs = new object[_width, _height];
@@ -142,6 +150,10 @@ namespace TextAdventure.Map
             return objs;
         }
 
+        /// <summary>
+        /// Takes the given array of points and makes those walls inaccessable
+        /// </summary>
+        /// <param name="points"></param>
         private void SetInaccessibleWalls(Point[] points)
         {
             //Makes each wall inaccessible
@@ -151,7 +163,7 @@ namespace TextAdventure.Map
         }
 
 		/// <returns>The filename</returns>
-		public string GetFileType()
+		public string GetFileName()
 		{
 			return _fileName;
 		}
@@ -178,6 +190,15 @@ namespace TextAdventure.Map
         public Point GetExit()
         {
             return _exit;
+        }
+
+        /// <summary>
+        /// Getter for the _userLocation attribute
+        /// </summary>
+        /// <returns>_userLocation</returns>
+        public Point GetUserLocation()
+        {
+            return _userLocation;
         }
 	}
 }

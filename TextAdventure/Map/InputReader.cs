@@ -33,25 +33,25 @@ namespace TextAdventure.Map
 			{
                 //looks if the move is legal, has the program check surroundings 
                 //again if a move occurred
-                case "forward":
+                case "w":
 					CheckLegalForwardMove(h, r, point);
 			        checkAgain = true;
 					break;
-				case "back":
+				case "s":
 					CheckLegalBackwardMove(h, r, point);
                     checkAgain = true;
                     break;
-				case "left":
+				case "a":
 					CheckLegalLeftMove(h, r, point);
                     checkAgain = true;
                     break;
-				case "right":
+				case "d":
 					CheckLegalRightMove(h, r, point);
                     checkAgain = true;
                     break;
 				case "map":
 					//Calls the Mapreader printmap function
-					MapReader.PrintMap(r.GetFileType(), r, h);
+					MapReader.PrintMap(r.GetFileName(), r, h);
 					break;
 				case "quit":
 					QuitProgram();
@@ -92,9 +92,9 @@ namespace TextAdventure.Map
 			var y = p.GetY();
 			var locations = r.GetLocations();
 
-			if (y + 1 >= r.GetHeight() - 1) return;
+            if (x == r.GetExit().GetX() && (y == r.GetExit().GetY() - 1)) _exiting = true;
+            if (y + 1 >= r.GetHeight() - 1) return;
 			if (locations[x, y + 1] is Enemy) Fight(x, y + 1, h, locations);
-            else if (x == r.GetExit().GetX() && (y == r.GetExit().GetY() - 1)) _exiting = true;
             else if (((Point) locations[x, y + 1]).IsAccessible()) p.Forward();
 		}
 
@@ -156,6 +156,11 @@ namespace TextAdventure.Map
 			if (s.ToLower().Equals("yes")) Environment.Exit(0);
 		}
 
+        /// <summary>
+        /// Looks around the user to see if there's an exit
+        /// </summary>
+        /// <param name="r">Current room</param>
+        /// <param name="h"></param>
         public static void CheckForExit(Room r, Human h)
         {
             if (h.GetLocation().GetX() == r.GetExit().GetX() &&
