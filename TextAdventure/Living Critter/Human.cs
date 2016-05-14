@@ -62,62 +62,104 @@ namespace TextAdventure.Living_Critter
             Globals.UserLevel++;
         }
 
+        /// <summary>
+        /// Increments the user's health and hitpoints
+        /// </summary>
         public void HealthUp()
         {
             Health++;
             Hitpoints++;
         }
 
+        /// <summary>
+        /// Increments the user's mutability
+        /// </summary>
         public void MutabilityUp()
         {
             Mutability++;
         }
 
+        /// <summary>
+        /// Increments the user's intelligence
+        /// </summary>
         public void IntelligenceUp()
         {
             Intelligence++;
         }
 
+        /// <summary>
+        /// Increments the user's brutishness
+        /// </summary>
         public void BrutishnessUp()
         {
             Brutishness++;
         }
 
+        /// <summary>
+        /// Increments the user's willpower
+        /// </summary>
         public void WillpowerUp()
         {
             Willpower++;
         }
 
+        /// <summary>
+        /// Increments the user's endurance
+        /// </summary>
         public void EnduranceUp()
         {
             Endurance++;
         }
 
+        /// <summary>
+        /// Getter for health
+        /// </summary>
+        /// <returns>Returns the user's health</returns>
         public int GetHealth()
         {
             return Health;
         }
 
+        /// <summary>
+        /// Getter for mutability
+        /// </summary>
+        /// <returns>Returns the user's mutability</returns>
         public int GetMutability()
         {
             return Mutability;
         }
 
+        /// <summary>
+        /// Getter for intelligence
+        /// </summary>
+        /// <returns>Returns the user's intelligence</returns>
         public int GetIntelligence()
         {
             return Intelligence;
         }
 
+        /// <summary>
+        /// Getter for brutishness
+        /// </summary>
+        /// <returns>Returns the user's brutishness</returns>
         public int GetBrutishness()
         {
             return Brutishness;
         }
 
+        /// <summary>
+        /// Getter for willpower
+        /// </summary>
+        /// <returns>Returns the user's willpower</returns>
         public int GetWillpower()
         {
             return Willpower;
         }
 
+        /// <summary>
+        /// Getter for endurance
+        /// </summary>
+        /// <returns>Returns the user's endurance</returns>
         public int GetEndurance()
         {
             return Endurance;

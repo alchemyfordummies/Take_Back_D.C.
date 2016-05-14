@@ -57,8 +57,8 @@ namespace TextAdventure.Living_Critter
             {
                 case "General":
                     Type = name;
-                    Health = Hitpoints = 100;
-                    Intelligence = 100;
+                    Health = Hitpoints = 90;
+                    Intelligence = 90;
                     Brutishness = 50;
                     Willpower = 90;
                     Endurance = 40;
@@ -66,29 +66,29 @@ namespace TextAdventure.Living_Critter
                     break;
                 case "Major":
                     Type = name;
-                    Health = Hitpoints = 85;
-                    Intelligence = 80;
-                    Brutishness = 45;
-                    Willpower = 60;
+                    Health = Hitpoints = 55;
+                    Intelligence = 60;
+                    Brutishness = 25;
+                    Willpower = 30;
                     Endurance = 50;
                     Level = RandNum.Next(Level - 1, Level + 3);
                     break;
                 case "Lieutenant":
                     Type = name;
-                    Health = Hitpoints = 70;
-                    Intelligence = 65;
-                    Brutishness = 40;
-                    Willpower = 55;
-                    Endurance = 65;
+                    Health = Hitpoints = 50;
+                    Intelligence = 35;
+                    Brutishness = 20;
+                    Willpower = 25;
+                    Endurance = 25;
                     Level = RandNum.Next(Level - 2, Level + 1);
                     break;
                 case "Sergeant":
                     Type = name;
-                    Health = Hitpoints = 70;
-                    Intelligence = 65;
-                    Brutishness = 40;
-                    Willpower = 55;
-                    Endurance = 65;
+                    Health = Hitpoints = 20;
+                    Intelligence = 25;
+                    Brutishness = 10;
+                    Willpower = 25;
+                    Endurance = 15;
                     Level = RandNum.Next(Level - 4, Level + 4);
                     break;
                 default:

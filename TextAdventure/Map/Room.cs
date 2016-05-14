@@ -102,18 +102,18 @@ namespace TextAdventure.Map
             SetInaccessibleWalls(_roomTwoWalls);
 
             //set enemy spawns
-		    _locations[2, 1] = new Enemy(Globals.UserLevel, new Point(2, 1));
+		    _locations[2, 1] = new Enemy(Globals.UserLevel, new Point(2, 1), "Sergeant");
             _locations[5, 1] = new Enemy(Globals.UserLevel, new Point(5, 1));
             _locations[11, 1] = new Enemy(Globals.UserLevel, new Point(11, 1));
             _locations[12, 1] = new Enemy(Globals.UserLevel, new Point(12, 1));
             _locations[13, 1] = new Enemy(Globals.UserLevel, new Point(13, 1));
             _locations[12, 2] = new Enemy(Globals.UserLevel, new Point(12, 2));
-            _locations[1, 3] = new Enemy(Globals.UserLevel, new Point(1, 3));
-            _locations[2, 3] = new Enemy(Globals.UserLevel, new Point(2, 3));
+            _locations[1, 3] = new Enemy(Globals.UserLevel, new Point(1, 3), "Sergeant");
+            _locations[2, 3] = new Enemy(Globals.UserLevel, new Point(2, 3), "Sergeant");
             _locations[5, 3] = new Enemy(Globals.UserLevel, new Point(5, 3));
             _locations[14, 3] = new Enemy(Globals.UserLevel, new Point(14, 3));
             //set treasure spawns
-            _locations[18, 3] = new Enemy(Globals.UserLevel, new Point(18, 3));
+            _locations[18, 3] = new Enemy(Globals.UserLevel, new Point(18, 3), "Lieutenant");
 
             _exit = new Point(4, 4);
         }

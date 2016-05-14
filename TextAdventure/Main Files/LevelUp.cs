@@ -20,6 +20,7 @@ namespace TextAdventure.Main_Files {
             {
                 case "health":
                     h.HealthUp();
+                    if (h.GetHealth() % 5 == 0) h.HealthUp();
                     Console.WriteLine("Health: " + h.GetHealth());
                     break;
                 case "mutability":
@@ -44,7 +45,7 @@ namespace TextAdventure.Main_Files {
                     break;
                 default: 
                     Console.WriteLine("That's not an attribute.");
-                    Level(h);
+                    Increment(s, h);
                     break;
             }     
         }
