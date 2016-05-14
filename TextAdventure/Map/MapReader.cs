@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using TextAdventure.Living_Critter.User_Character_Types;
+using TextAdventure.Living_Critter;
 
 namespace TextAdventure.Map
 {

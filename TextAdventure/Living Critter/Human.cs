@@ -1,8 +1,7 @@
-﻿using System;
-using TextAdventure.Living_Critter.Enemy_Types;
+using System;
 using TextAdventure.Objects;
 
-namespace TextAdventure.Living_Critter.User_Character_Types
+namespace TextAdventure.Living_Critter
 {
     /// <summary>
     /// Initiates a user Character with default attributes. This is who the user will control through the game.
@@ -61,6 +60,67 @@ namespace TextAdventure.Living_Critter.User_Character_Types
         public void LevelUp()
         {
             Globals.UserLevel++;
+        }
+
+        public void HealthUp()
+        {
+            Health++;
+            Hitpoints++;
+        }
+
+        public void MutabilityUp()
+        {
+            Mutability++;
+        }
+
+        public void IntelligenceUp()
+        {
+            Intelligence++;
+        }
+
+        public void BrutishnessUp()
+        {
+            Brutishness++;
+        }
+
+        public void WillpowerUp()
+        {
+            Willpower++;
+        }
+
+        public void EnduranceUp()
+        {
+            Endurance++;
+        }
+
+        public int GetHealth()
+        {
+            return Health;
+        }
+
+        public int GetMutability()
+        {
+            return Mutability;
+        }
+
+        public int GetIntelligence()
+        {
+            return Intelligence;
+        }
+
+        public int GetBrutishness()
+        {
+            return Brutishness;
+        }
+
+        public int GetWillpower()
+        {
+            return Willpower;
+        }
+
+        public int GetEndurance()
+        {
+            return Endurance;
         }
 
 	    /// <summary>Performs an attack by the human on an enemy</summary>

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
-using TextAdventure.Living_Critter.Enemy_Types;
-using TextAdventure.Living_Critter.User_Character_Types;
+using TextAdventure.Living_Critter;
+using TextAdventure.Map;
 using TextAdventure.Objects;
 using TextAdventure.Objects.Consumable.Container;
 
-namespace TextAdventure.Map
+namespace TextAdventure.Main_Files
 {
     /// <summary>Parses the input</summary>
 	public static class InputReader
@@ -286,10 +286,11 @@ namespace TextAdventure.Map
 			{
 				Globals.UserLevel++;
 				locations[x, y] = new Point(x, y);
+                Console.WriteLine(enemy.Hitpoints + ", " + h.Hitpoints);
+                LevelUp.Level(h);
 			}
-			else Globals.IsGameDone = true;
 
-            Console.WriteLine(enemy.Hitpoints + ", " + h.Hitpoints);
+			else Globals.IsGameDone = true;
         }
 
         /// <summary>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using TextAdventure.Living_Critter.User_Character_Types;
+using TextAdventure.Living_Critter;
 using TextAdventure.Map;
 
-namespace TextAdventure
+namespace TextAdventure.Main_Files
 {
     internal class Program
     {

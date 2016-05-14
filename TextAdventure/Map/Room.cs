@@ -1,6 +1,5 @@
 ﻿using System;
-using TextAdventure.Living_Critter.Enemy_Types;
-using TextAdventure.Living_Critter.User_Character_Types;
+using TextAdventure.Living_Critter;
 using TextAdventure.Map.Rooms;
 using TextAdventure.Objects;
 using TextAdventure.Objects.Consumable.Container;

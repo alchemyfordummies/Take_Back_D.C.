@@ -42,12 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Globals.cs" />
+    <Compile Include="Living Critter\Enemy.cs" />
+    <Compile Include="Living Critter\Human.cs" />
     <Compile Include="Living Critter\ICharacter.cs" />
-    <Compile Include="Living Critter\Enemy Types\Enemy.cs" />
-    <Compile Include="Living Critter\User Character Types\Human.cs" />
+    <Compile Include="Main Files\InputReader.cs" />
+    <Compile Include="Main Files\LevelUp.cs" />
+    <Compile Include="Main Files\Program.cs" />
     <Compile Include="Map\DialogReader.cs" />
     <Compile Include="Map\Exit.cs" />
-    <Compile Include="Map\InputReader.cs" />
     <Compile Include="Map\MapReader.cs" />
     <Compile Include="Map\Room.cs" />
     <Compile Include="Map\Rooms\RoomFive.cs" />
@@ -63,10 +65,11 @@
     <Compile Include="Objects\Consumable\Container\IContainer.cs" />
     <Compile Include="Objects\Consumable\Effect.cs" />
     <Compile Include="Objects\Point.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Living Critter\Enemy Types\" />
+    <Folder Include="Living Critter\User Character Types\" />
     <Folder Include="Objects\Consumable\Food\" />
     <Folder Include="Objects\Consumable\Potion\" />
     <Folder Include="Objects\Weapon\" />

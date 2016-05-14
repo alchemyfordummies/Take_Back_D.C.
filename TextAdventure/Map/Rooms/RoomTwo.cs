@@ -1,4 +1,4 @@
-﻿using TextAdventure.Living_Critter.User_Character_Types;
+﻿using TextAdventure.Living_Critter;
 using TextAdventure.Objects;
 
 namespace TextAdventure.Map.Rooms {

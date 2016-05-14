@@ -1,8 +1,7 @@
-﻿using System;
-using TextAdventure.Living_Critter.User_Character_Types;
+using System;
 using TextAdventure.Objects;
 
-namespace TextAdventure.Living_Critter.Enemy_Types
+namespace TextAdventure.Living_Critter
 {
     /// <summary>
     /// Contains all the types of enemies, and when called, it will initiate a new enemy
