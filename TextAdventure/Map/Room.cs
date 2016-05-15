@@ -120,8 +120,30 @@ namespace TextAdventure.Map
 
 		private void MakeRoomThree(Human h)
 		{
-		    
-		}
+		    _roomThreeWalls = RoomThree.MakeRoomThree(h, _height, _width, _locations,
+		    _roomThreeWalls, _fileName);
+		    _fileName = "RoomThreeMap.txt";
+            //sets user's location
+            _userLocation = new Point(7, 0);
+
+		    _height = 9;
+		    _width = 15;
+		    _locations = SetUpLocations(_locations);
+
+            SetInaccessibleWalls(_roomThreeWalls);
+
+            //set Enemy spawns
+		    _locations[7, 2] = new Enemy(Globals.UserLevel, new Point(7, 2), "Major");
+            _locations[7, 7] = new Enemy(Globals.UserLevel, new Point(7, 7), "Sergeant");
+            _locations[1, 4] = new Enemy(Globals.UserLevel, new Point(1, 4));
+            _locations[2, 4] = new Enemy(Globals.UserLevel, new Point(2, 4), "Sergeant");
+            _locations[13, 4] = new Enemy(Globals.UserLevel, new Point(13, 4), "Sergeant");
+            _locations[2, 5] = new Enemy(Globals.UserLevel, new Point(2, 5), "Sergeant");
+            _locations[12, 5] = new Enemy(Globals.UserLevel, new Point(12, 5), "Major");
+            _locations[2, 6] = new Enemy(Globals.UserLevel, new Point(2, 6), "Sergeant");
+
+            _exit = new Point(3, 4);
+        }
 
 		private void MakeRoomFour(Human h)
 		{

@@ -89,6 +89,7 @@ namespace TextAdventure.Main_Files
 	                roomIndex--;
                     user.SetLocation(location[roomIndex]);
                     MapReader.PrintMap(room[roomIndex].GetFileName(), room[roomIndex], user);
+	                user.Hitpoints += 2;
                     PrintLines(2);
                 }
 

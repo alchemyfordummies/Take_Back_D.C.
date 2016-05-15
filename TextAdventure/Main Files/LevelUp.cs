@@ -45,7 +45,7 @@ namespace TextAdventure.Main_Files {
                     break;
                 default: 
                     Console.WriteLine("That's not an attribute.");
-                    Increment(s, h);
+                    Increment(Console.ReadLine(), h);
                     break;
             }     
         }
