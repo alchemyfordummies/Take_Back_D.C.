@@ -64,6 +64,10 @@ namespace TextAdventure.Main_Files
                     //prints the user's health
                     Console.WriteLine(h.Hitpoints);
 			        break;
+                case "stamina":
+                    //prints the user's stamina
+                    Console.WriteLine(h.GetStamina());
+			        break;
                 case "help":
 			        PrintHelpFile();
 			        break;
@@ -285,6 +289,7 @@ namespace TextAdventure.Main_Files
 			if (h.Hitpoints > 0 && enemy.Hitpoints == 0)
 			{
 				Globals.UserLevel++;
+                h.StaminaDown();
 				locations[x, y] = new Point(x, y);
                 Console.WriteLine(enemy.Hitpoints + ", " + h.Hitpoints);
                 LevelUp.Level(h);

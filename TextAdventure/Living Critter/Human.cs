@@ -20,6 +20,8 @@ namespace TextAdventure.Living_Critter
 	    protected int Willpower;
         /// <summary>Also unused right now</summary>
 	    protected int Endurance;
+        /// <summary>Helps damage, drops after each fight</summary>
+        protected int Stamina;
         /// <summary>Sets the enemy's level, used in damage as well</summary>
 	    public int Hitpoints;
 
@@ -55,6 +57,11 @@ namespace TextAdventure.Living_Critter
 	    {
 		    Location = p;
 	    }
+
+        public void SetStamina(int i)
+        {
+            Stamina = i;
+        }
 
 	    /// <summary>Increments the user's level</summary>
         public void LevelUp()
@@ -112,6 +119,14 @@ namespace TextAdventure.Living_Critter
         }
 
         /// <summary>
+        /// Lowers the human's stamina after a fight
+        /// </summary>
+        public void StaminaDown()
+        {
+            if (Stamina > 0) Stamina--;
+        }
+
+        /// <summary>
         /// Getter for health
         /// </summary>
         /// <returns>Returns the user's health</returns>
@@ -165,6 +180,15 @@ namespace TextAdventure.Living_Critter
             return Endurance;
         }
 
+        /// <summary>
+        /// Returns the user's stamina
+        /// </summary>
+        /// <returns></returns>
+        public int GetStamina()
+        {
+            return Stamina;
+        }
+
 	    /// <summary>Performs an attack by the human on an enemy</summary>
 	    /// <param name="e">The enemy being attacked</param>
         public void Attack(Enemy e)
@@ -182,9 +206,21 @@ namespace TextAdventure.Living_Critter
 	    /// <summary>Uses Intelligence, Brutishness, and Level to determine damage</summary>
 	    /// <returns>A number between 0 and the max calculated damage</returns>
         public int DamageDone()
+	    {
+	        var chance = HitChance();
+            var max = (Intelligence*0.075) + (Brutishness*0.2) + (Globals.UserLevel)
+                            +(Endurance*0.15);
+	        if (RandNum.Next(0, 100) < ((int) chance*100)) return 0;
+	        return Stamina > 0 ? RandNum.Next(2, (int) max + 1) : RandNum.Next(0, (int)max - 1);
+	    }
+
+        /// <summary>
+        /// Calculates the chance for the user to hit
+        /// </summary>
+        /// <returns>Returns a double as a percentage for the chance</returns>
+        public double HitChance()
         {
-            var max = (Intelligence*0.075) + (Brutishness*0.2) + (Globals.UserLevel);
-            return RandNum.Next(0, (int)max + 1);
+            return 0.65 + (0.012*Intelligence);
         }
     }
 }
