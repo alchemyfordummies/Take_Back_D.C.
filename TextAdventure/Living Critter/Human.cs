@@ -21,7 +21,7 @@ namespace TextAdventure.Living_Critter
         /// <summary>Also unused right now</summary>
 	    protected int Endurance;
         /// <summary>Helps damage, drops after each fight</summary>
-        protected int Stamina;
+        protected double Stamina;
         /// <summary>Sets the enemy's level, used in damage as well</summary>
 	    public int Hitpoints;
 
@@ -58,7 +58,11 @@ namespace TextAdventure.Living_Critter
 		    Location = p;
 	    }
 
-        public void SetStamina(int i)
+        /// <summary>
+        /// Sets the user's stamina
+        /// </summary>
+        /// <param name="i">The value of the stamina to set to</param>
+        public void SetStamina(double i)
         {
             Stamina = i;
         }
@@ -119,11 +123,23 @@ namespace TextAdventure.Living_Critter
         }
 
         /// <summary>
+        /// Increments the user's stamina
+        /// </summary>
+        public void StaminaUp()
+        {
+            Stamina++;
+        }
+
+        /// <summary>
         /// Lowers the human's stamina after a fight
         /// </summary>
         public void StaminaDown()
         {
-            if (Stamina > 0) Stamina--;
+            double up = Math.Round(0.1*Willpower);
+            if (Stamina > 0)
+            {
+                Stamina = Stamina - 2 + up;
+            }
         }
 
         /// <summary>
@@ -184,7 +200,7 @@ namespace TextAdventure.Living_Critter
         /// Returns the user's stamina
         /// </summary>
         /// <returns></returns>
-        public int GetStamina()
+        public double GetStamina()
         {
             return Stamina;
         }
@@ -209,7 +225,7 @@ namespace TextAdventure.Living_Critter
 	    {
 	        var chance = HitChance();
             var max = (Intelligence*0.075) + (Brutishness*0.2) + (Globals.UserLevel)
-                            +(Endurance*0.15);
+                            +(Endurance*0.15) + (Willpower*0.05);
 	        if (RandNum.Next(0, 100) < ((int) chance*100)) return 0;
 	        return Stamina > 0 ? RandNum.Next(2, (int) max + 1) : RandNum.Next(0, (int)max - 1);
 	    }
@@ -220,7 +236,7 @@ namespace TextAdventure.Living_Critter
         /// <returns>Returns a double as a percentage for the chance</returns>
         public double HitChance()
         {
-            return 0.65 + (0.012*Intelligence);
+            return 0.65 + (0.012*Intelligence) + (0.005*Willpower);
         }
     }
 }

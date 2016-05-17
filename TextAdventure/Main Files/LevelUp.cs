@@ -6,6 +6,7 @@ namespace TextAdventure.Main_Files {
     {
         public static void Level(Human h)
         {
+            h.StaminaUp();
             Console.WriteLine("Level Up! What attribute would you like to increase? You have" +
             " two points (health, mutability, intelligence, brutishness, willpower, endurance).");
             var readLine = Console.ReadLine();
@@ -20,7 +21,7 @@ namespace TextAdventure.Main_Files {
             {
                 case "health":
                     h.HealthUp();
-                    if (h.GetHealth() % 5 == 0) h.HealthUp();
+                    if (h.GetHealth()%5 == 0) h.HealthUp();
                     Console.WriteLine("Health: " + h.GetHealth());
                     break;
                 case "mutability":
