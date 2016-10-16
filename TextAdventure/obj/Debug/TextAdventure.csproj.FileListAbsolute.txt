@@ -1,0 +1,6 @@
+C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.csprojResolveAssemblyReference.cache
+C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\bin\Debug\TextAdventure.XML
+C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\bin\Debug\TextAdventure.exe
+C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\bin\Debug\TextAdventure.pdb
+C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.exe
+C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.pdb

@@ -34,6 +34,9 @@ namespace TextAdventure.Living_Critter
         /// <summary>Selects the type of enemy this instance is</summary>
 	    protected Point Location;
 
+        /// <summary>Damage added by weapons or armor</summary>
+        protected int addedDamage;
+
 	    /// <summary>Initiates a human with default attributes</summary>
 	    /// <param name="s">The name the user inputted</param>
         public Human(string s)
@@ -178,6 +181,12 @@ namespace TextAdventure.Living_Critter
             return Brutishness;
         }
 
+        /// <param name="i">Amount to increase brutishness by</param>
+        public void SetBrutishness(int i)
+        {
+            Brutishness += i;
+        }
+
         /// <summary>
         /// Getter for willpower
         /// </summary>
@@ -185,6 +194,12 @@ namespace TextAdventure.Living_Critter
         public int GetWillpower()
         {
             return Willpower;
+        }
+
+        /// <param name="i">Amount to increase willpower by</param>
+        public void SetWillpower(int i)
+        {
+            Willpower += i;
         }
 
         /// <summary>
@@ -203,6 +218,18 @@ namespace TextAdventure.Living_Critter
         public double GetStamina()
         {
             return Stamina;
+        }
+
+        /// <returns>The amount of damage added to the character</returns>
+        public int GetAddedDamage()
+        {
+            return addedDamage;
+        }
+
+        /// <param name="i">Value to add to added damage</param>
+        public void SetAddedDamage(int i)
+        {
+            addedDamage += i;
         }
 
 	    /// <summary>Performs an attack by the human on an enemy</summary>
@@ -227,7 +254,8 @@ namespace TextAdventure.Living_Critter
             var max = (Intelligence*0.075) + (Brutishness*0.2) + (Globals.UserLevel)
                             +(Endurance*0.15) + (Willpower*0.05);
 	        if (RandNum.Next(0, 100) < ((int) chance*100)) return 0;
-	        return Stamina > 0 ? RandNum.Next(2, (int) max + 1) : RandNum.Next(0, (int)max - 1);
+            int temp = Stamina > 0 ? RandNum.Next(2, (int) max + 1) : RandNum.Next(0, (int)max - 1);
+            return temp + (int)(addedDamage/1.5);
 	    }
 
         /// <summary>

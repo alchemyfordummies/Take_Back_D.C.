@@ -58,12 +58,15 @@
     <Compile Include="Map\Rooms\RoomThree.cs" />
     <Compile Include="Map\Rooms\RoomTwo.cs" />
     <Compile Include="Numbers\RandomRand.cs" />
-    <Compile Include="Objects\Armor\Helmet.cs" />
+    <Compile Include="Objects\Equippable Item\Armor\Helmet.cs" />
     <Compile Include="Objects\Consumable\Container\Barrel.cs" />
     <Compile Include="Objects\Consumable\Container\Box.cs" />
     <Compile Include="Objects\Consumable\Container\Chest.cs" />
     <Compile Include="Objects\Consumable\Container\IContainer.cs" />
     <Compile Include="Objects\Consumable\Effect.cs" />
+    <Compile Include="Objects\Equippable Item\IEquippable.cs" />
+    <Compile Include="Objects\Equippable Item\Weapon\Gun.cs" />
+    <Compile Include="Objects\Equippable Item\Weapon\Sword.cs" />
     <Compile Include="Objects\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -72,7 +75,6 @@
     <Folder Include="Living Critter\User Character Types\" />
     <Folder Include="Objects\Consumable\Food\" />
     <Folder Include="Objects\Consumable\Potion\" />
-    <Folder Include="Objects\Weapon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\Dialogue.txt">

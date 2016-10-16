@@ -1,0 +1,601 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TextAdventure</name>
+    </assembly>
+    <members>
+        <member name="T:Globals">
+            <summary>Need these available everywhere</summary>
+        </member>
+        <member name="F:Globals.UserLevel">
+            <summary>Human's level</summary>l
+        </member>
+        <member name="F:Globals.IsGameDone">
+            <summary>Says if the user has died or the game has been won</summary>
+        </member>
+        <member name="T:TextAdventure.Living_Critter.Enemy">
+            <summary>
+            Contains all the types of enemies, and when called, it will initiate a new enemy
+            in any given room.
+            </summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.Health">
+            <summary>Max number of hitpoints</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.Mutability">
+            <summary>Determines how likely it is for the character to mutate</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.Intelligence">
+            <summary>Part of the damage formula</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.Brutishness">
+            <summary>Bigger part of the damage formula</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.Willpower">
+            <summary>Right now unused</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.Endurance">
+            <summary>Also unused right now</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.Level">
+            <summary>Sets the enemy's level, used in damage as well</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.Hitpoints">
+            <summary>Starts as health, goes down with attacks</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.RandNum">
+            <summary>This enemy's random number generator</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Enemy.Type">
+            <summary>Selects the type of enemy this instance is</summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Enemy.#ctor">
+            <summary>Initializes a default, lowest level enemy</summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Enemy.#ctor(System.Int32,TextAdventure.Objects.Point,System.String)">
+            <summary>Initializes a new enemy, given a name, a point, and the human's level
+            to determine its attributes, as well as the name of the type of enemy</summary>
+            <param name="hLevel">User's level</param>
+            <param name="loc">Enemy's location</param>
+            <param name="name">Name of Enemy type</param>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Enemy.Attack(TextAdventure.Living_Critter.Human)">
+            <summary>Executes an attack by the human</summary>
+            <param name="h">Takes a human to carry out the attack</param>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Enemy.Mutate">
+            <summary>Yet to be determined</summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Enemy.DamageDone">
+            <summary>Uses intelligence, Brutishness, and level to determine damage</summary>
+            <returns>A random number between zero and the max damage</returns>
+        </member>
+        <member name="T:TextAdventure.Living_Critter.Human">
+            <summary>
+            Initiates a user Character with default attributes. This is who the user will control through the game.
+            </summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Health">
+            <summary>Max number of hitpoints</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Mutability">
+            <summary>Determines how likely it is for the character to mutate</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Intelligence">
+            <summary>Part of the damage formula</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Brutishness">
+            <summary>Bigger part of the damage formula</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Willpower">
+            <summary>Right now unused</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Endurance">
+            <summary>Also unused right now</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Stamina">
+            <summary>Helps damage, drops after each fight</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Hitpoints">
+            <summary>Sets the enemy's level, used in damage as well</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.RandNum">
+            <summary>Starts as health, goes down with attacks</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Name">
+            <summary>This enemy's random number generator</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.Location">
+            <summary>Selects the type of enemy this instance is</summary>
+        </member>
+        <member name="F:TextAdventure.Living_Critter.Human.addedDamage">
+            <summary>Damage added by weapons or armor</summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.#ctor(System.String)">
+            <summary>Initiates a human with default attributes</summary>
+            <param name="s">The name the user inputted</param>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.GetLocation">
+            <returns>User's location</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.SetLocation(TextAdventure.Objects.Point)">
+            <param name="p">Changes the human's location to p</param>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.SetStamina(System.Double)">
+            <summary>
+            Sets the user's stamina
+            </summary>
+            <param name="i">The value of the stamina to set to</param>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.LevelUp">
+            <summary>Increments the user's level</summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.HealthUp">
+            <summary>
+            Increments the user's health and hitpoints
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.MutabilityUp">
+            <summary>
+            Increments the user's mutability
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.IntelligenceUp">
+            <summary>
+            Increments the user's intelligence
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.BrutishnessUp">
+            <summary>
+            Increments the user's brutishness
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.WillpowerUp">
+            <summary>
+            Increments the user's willpower
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.EnduranceUp">
+            <summary>
+            Increments the user's endurance
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.StaminaUp">
+            <summary>
+            Increments the user's stamina
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.StaminaDown">
+            <summary>
+            Lowers the human's stamina after a fight
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.GetHealth">
+            <summary>
+            Getter for health
+            </summary>
+            <returns>Returns the user's health</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.GetMutability">
+            <summary>
+            Getter for mutability
+            </summary>
+            <returns>Returns the user's mutability</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.GetIntelligence">
+            <summary>
+            Getter for intelligence
+            </summary>
+            <returns>Returns the user's intelligence</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.GetBrutishness">
+            <summary>
+            Getter for brutishness
+            </summary>
+            <returns>Returns the user's brutishness</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.GetWillpower">
+            <summary>
+            Getter for willpower
+            </summary>
+            <returns>Returns the user's willpower</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.GetEndurance">
+            <summary>
+            Getter for endurance
+            </summary>
+            <returns>Returns the user's endurance</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.GetStamina">
+            <summary>
+            Returns the user's stamina
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.GetAddedDamage">
+            <returns>The amount of damage added to the character</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.SetAddedDamage(System.Int32)">
+            <param name="i">Value to add to added damage</param>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.Attack(TextAdventure.Living_Critter.Enemy)">
+            <summary>Performs an attack by the human on an enemy</summary>
+            <param name="e">The enemy being attacked</param>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.Mutate">
+            <summary>Yet to be determined</summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.DamageDone">
+            <summary>Uses Intelligence, Brutishness, and Level to determine damage</summary>
+            <returns>A number between 0 and the max calculated damage</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.HitChance">
+            <summary>
+            Calculates the chance for the user to hit
+            </summary>
+            <returns>Returns a double as a percentage for the chance</returns>
+        </member>
+        <member name="T:TextAdventure.Living_Critter.ICharacter">
+            <summary>A character has to be able to mutate and amount of damage</summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.ICharacter.Mutate">
+            <summary>Determines how much of an effect mutation has</summary>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.ICharacter.DamageDone">
+            <summary>Describes how much damage was done by the character</summary>
+            <returns>Returns the amount of damage done by the character</returns>
+        </member>
+        <member name="T:TextAdventure.Main_Files.InputReader">
+            <summary>Parses the input</summary>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.StartReading(System.String,TextAdventure.Living_Critter.Human,TextAdventure.Map.Room)">
+            <summary>Takes a string, a human, and a room and checks the input</summary>
+            <returns>True if we're switching rooms, otherwise is false</returns>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CheckInput(System.String,TextAdventure.Living_Critter.Human,TextAdventure.Map.Room)">
+            <summary>Checks the input and performs the corresponing action</summary>
+            <param name="str">The user input, any type of command</param>
+            <param name="h">The user's character</param>
+            <param name="r">The room the user is in</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CheckLegalForwardMove(TextAdventure.Living_Critter.Human,TextAdventure.Map.Room,TextAdventure.Objects.Point)">
+            <summary>Looks to see if it's possible to move forward</summary>
+            <param name="h">The user's character</param>
+            <param name="r">The room the user is in</param>
+            <param name="p">The human's location</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CheckLegalBackwardMove(TextAdventure.Living_Critter.Human,TextAdventure.Map.Room,TextAdventure.Objects.Point)">
+            <summary>Looks to see if it's possible to move backward</summary>
+            <param name="h">The user's character</param>
+            <param name="r">The room the user is in</param>
+            <param name="p">The human's location</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CheckLegalLeftMove(TextAdventure.Living_Critter.Human,TextAdventure.Map.Room,TextAdventure.Objects.Point)">
+            <summary>Looks to see if it's possible to move left</summary>
+            <param name="h">The user's character</param>
+            <param name="r">The room the user is in</param>
+            <param name="p">The human's location</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CheckLegalRightMove(TextAdventure.Living_Critter.Human,TextAdventure.Map.Room,TextAdventure.Objects.Point)">
+            <summary>Looks to see if it's possible to move right</summary>
+            <param name="h">The user's character</param>
+            <param name="r">The room the user is in</param>
+            <param name="p">The human's location</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.QuitProgram">
+            <summary>Prompts the user for quitting, then quits on "yes"</summary>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CheckForExit(TextAdventure.Map.Room,TextAdventure.Living_Critter.Human)">
+            <summary>
+            Looks around the user to see if there's an exit
+            </summary>
+            <param name="r">Current room</param>
+            <param name="h"></param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.LookAround(TextAdventure.Objects.Point,TextAdventure.Map.Room)">
+            <summary>Checks user surroundings for treasure or enemies</summary>
+            <param name="r">The room the user is in</param>
+            <param name="p">The human's location</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CheckEnemies(TextAdventure.Map.Room,System.Int32,System.Int32)">
+            <summary>
+            Checks the four locations around the user and sees if that one is an enemy
+            </summary>
+            <param name="r">Current room</param>
+            <param name="x">x-coordinate of the point</param>
+            <param name="y">y-coordinate of the point</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CastEnemies(System.Object)">
+            <summary>
+            Tries casting the object into an enemy, then checks for null to determine
+            if the object is an enemy
+            </summary>
+            <param name="point">The point to be checked</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CheckContainers(TextAdventure.Map.Room,System.Int32,System.Int32)">
+            <summary>
+            Checks the four locations around the user and sees if that one is a container
+            </summary>
+            <param name="r">Current room</param>
+            <param name="x">-x-coordinate of the point</param>
+            <param name="y">y-coordinate of the point</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.CastContainers(System.Object)">
+            <summary>
+            Tries casting the object as a container, then checks for null to determine if it is
+            a container
+            </summary>
+            <param name="point">The point to be checked</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.Fight(System.Int32,System.Int32,TextAdventure.Living_Critter.Human,System.Object[0:,0:])">
+            <summary>Carries out the combat</summary>
+            <param name="x">x-coordinate of the point</param>
+            <param name="y">y-coordinate of the point</param>
+            <param name="h">The user's character</param>
+            <param name="locations">The object array from the current room</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.NextRoom(TextAdventure.Map.Room,TextAdventure.Living_Critter.Human)">
+            <summary>
+            Sets up the next room for the player to get into
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.PrintHelpFile">
+            <summary>
+            Prints the help file containing all the help commands the user can type
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Main_Files.Program.PrintLines(System.Int32)">
+            <summary>
+            Simple format function
+            </summary>
+            <param name="x">Number of empty lines to print</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.Program.End">
+            <returns>If the game is finished</returns>
+        </member>
+        <member name="M:TextAdventure.Main_Files.Program.EndGame">
+            <summary>Executes what's done at the end of the game</summary>
+        </member>
+        <member name="M:TextAdventure.Main_Files.Program.Main(System.String[])">
+            <summary>Executes the program. First prompts for the character name.
+            Next, it starts a reader for dialog and narration and prints those
+            with some formatting. After that, it initializes room one, then
+            parses the user input</summary>
+        </member>
+        <member name="T:TextAdventure.Map.DialogReader">
+            <summary>Reads the dialog file</summary>
+        </member>
+        <member name="M:TextAdventure.Map.DialogReader.PrintDialog(System.String)">
+            <summary>Prints the whole file right now. Will be modified to print specific
+            sections of the file.</summary>
+        </member>
+        <member name="T:TextAdventure.Map.Exit">
+            <summary>Defines the attributes of the exit</summary>
+        </member>
+        <member name="M:TextAdventure.Map.Exit.#ctor(TextAdventure.Objects.Point,System.Int32)">
+            <summary>Places a new exit</summary>
+            <param name="p">Specifies the Exit's location</param>
+            <param name="r">Says which room to place the exit in</param>
+        </member>
+        <member name="T:TextAdventure.Map.MapReader">
+            <summary>Prints out a map</summary>
+        </member>
+        <member name="M:TextAdventure.Map.MapReader.StoreMap(System.String,System.Int32)">
+            <summary>
+            Reads the map into an array of arrays to be printed
+            </summary>
+            <param name="s">String of the file to open</param>
+            <param name="h">Height of the selected room</param>
+        </member>
+        <member name="M:TextAdventure.Map.MapReader.PrintMap(System.String,TextAdventure.Map.Room,TextAdventure.Living_Critter.Human)">
+            <summary>Prints a specified map with a tiny bit of formatting</summary>
+            <param name="s">The name of the file to be printed</param>
+            <param name="r">Current room</param>
+            <param name="h">Human character, only for location</param>
+        </member>
+        <member name="T:TextAdventure.Map.Room">
+            <summary>Makes a new room, the main playing area</summary>
+        </member>
+        <member name="M:TextAdventure.Map.Room.#ctor(System.Int32,TextAdventure.Living_Critter.Human)">
+            <param name="i">Room number to be created</param>
+            <param name="h">The user's character</param>
+        </member>
+        <member name="M:TextAdventure.Map.Room.MakeRoomOne(TextAdventure.Living_Critter.Human)">
+            <summary>Creates the first room</summary>
+            <param name="h">The user's character</param>
+        </member>
+        <member name="M:TextAdventure.Map.Room.MakeRoomTwo(TextAdventure.Living_Critter.Human)">
+            <summary>Creates the second room</summary>
+            <param name="h">The user's character</param>
+        </member>
+        <member name="M:TextAdventure.Map.Room.SetUpLocations(System.Object[0:,0:])">
+            <summary>
+            Initializes the object array given to it as a bunch of points
+            </summary>
+            <param name="objs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TextAdventure.Map.Room.SetInaccessibleWalls(TextAdventure.Objects.Point[])">
+            <summary>
+            Takes the given array of points and makes those walls inaccessable
+            </summary>
+            <param name="points"></param>
+        </member>
+        <member name="M:TextAdventure.Map.Room.GetFileName">
+            <returns>The filename</returns>
+        </member>
+        <member name="M:TextAdventure.Map.Room.GetLocations">
+            <returns>The location array</returns>
+        </member>
+        <member name="M:TextAdventure.Map.Room.GetHeight">
+            <returns>The room's height</returns>
+        </member>
+        <member name="M:TextAdventure.Map.Room.GetWidth">
+            <returns>The room's width</returns>
+        </member>
+        <member name="M:TextAdventure.Map.Room.GetExit">
+            <returns>Room one's exit</returns>
+        </member>
+        <member name="M:TextAdventure.Map.Room.GetUserLocation">
+            <summary>
+            Getter for the _userLocation attribute
+            </summary>
+            <returns>_userLocation</returns>
+        </member>
+        <member name="M:TextAdventure.Map.Rooms.RoomOne.MakeRoomOne(TextAdventure.Living_Critter.Human,System.Int32,System.Int32,System.Object[0:,0:],TextAdventure.Objects.Point[],System.String)">
+            <summary>
+            A method which defines each point in room one, done to shorten the main method
+            </summary>
+            <param name="h">Current user character</param>
+            <param name="_height">Height of the room</param>
+            <param name="_width">Width of the room</param>
+            <param name="_locations">Array of points in the room</param>
+            <param name="_roomOneWalls">Array of walls in the room</param>
+            <param name="_fileName">Room's file name</param>
+            <returns>The updated walls</returns>
+        </member>
+        <member name="M:TextAdventure.Map.Rooms.RoomTwo.MakeRoomTwo(TextAdventure.Living_Critter.Human,System.Int32,System.Int32,System.Object[0:,0:],TextAdventure.Objects.Point[],System.String)">
+            <summary>
+            A method which defines each point in room two, done to shorten the main method
+            </summary>
+            <param name="h">Current user character</param>
+            <param name="_height">Height of the room</param>
+            <param name="_width">Width of the room</param>
+            <param name="_locations">Array of points in the room</param>
+            <param name="_roomTwoWalls">Array of walls in the room</param>
+            <param name="_fileName">Room's file name</param>
+            <returns>The updated walls</returns>
+        </member>
+        <member name="T:TextAdventure.Numers.RandomRand">
+            <summary>This class is an attempt at a slightly more random number</summary>
+        </member>
+        <member name="M:TextAdventure.Numers.RandomRand.#ctor">
+            <summary>New number, which is a random of a random</summary>
+        </member>
+        <member name="M:TextAdventure.Numers.RandomRand.#ctor(System.Int32)">
+            <summary>Alternate constructor, using essentially a seed</summary>
+            <param name="x">The RandomRand's seed</param>
+        </member>
+        <member name="M:TextAdventure.Numers.RandomRand.MakeRandomPercentage">
+            <returns>Returns a number which is easily turned into a percentage</returns>
+        </member>
+        <member name="T:TextAdventure.Objects.Armor.Helmet">
+            <summary>This is an armor object, will go on the head</summary>
+        </member>
+        <member name="T:TextAdventure.Objects.Consumable.Container.Barrel">
+            <summary>A new container type, a barrel, which will have more capacity but can be booby-trapped</summary>
+        </member>
+        <member name="F:TextAdventure.Objects.Consumable.Container.Barrel._type">
+            <summary>The type of container, barrel in this case</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Consumable.Container.Barrel.#ctor(TextAdventure.Objects.Point)">
+            <summary>Initializes a new barrel at a specific point in the context of a room</summary>
+            <param name="p">The spot where the barrel will be put</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Consumable.Container.Barrel.IsTrapped">
+            <summary>Decides if the barrel will be trapped or not</summary>
+        </member>
+        <member name="T:TextAdventure.Objects.Consumable.Container.Box">
+            <summary>Another type of container, like a chest but can be booby-trapped</summary>
+        </member>
+        <member name="T:TextAdventure.Objects.Consumable.Container.Chest">
+            <summary>A new container with less storage but can't be booby-trapped</summary>
+        </member>
+        <member name="F:TextAdventure.Objects.Consumable.Container.Chest._type">
+            <summary>The type of container, barrel in this case</summary>
+        </member>
+        <member name="F:TextAdventure.Objects.Consumable.Container.Chest._capacity">
+            <summary>Says how many items the </summary>
+        </member>
+        <member name="F:TextAdventure.Objects.Consumable.Container.Chest._location">
+            <summary></summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Consumable.Container.Chest.#ctor(TextAdventure.Objects.Point)">
+            <summary>Initializes a new chest at a specific point in the context of a room</summary>
+            <param name="p">The spot where the chest will be put</param>
+        </member>
+        <member name="T:TextAdventure.Objects.Consumable.Container.IContainer">
+            <summary>Groups all the containers together</summary>
+        </member>
+        <member name="T:TextAdventure.Objects.Consumable.Effect">
+            <summary>Defines an effect for a potion</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Consumable.Effect.#ctor">
+            <summary>Constructs a default empty effect</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Consumable.Effect.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>Constructs a specific effect</summary>
+            <param name="s">The type of effect to be constructed</param>
+            <param name="b">Changes the amount of the buff</param>
+            <param name="c">Changes the amount of the curse</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Consumable.Effect.SetBuffAndCurse(System.Int32,System.Int32)">
+            <summary>Takes the buff and curse value and initializes the effect</summary>
+            <param name="c">Curse value</param>
+            <param name="b">Buff value</param>
+        </member>
+        <member name="T:TextAdventure.Objects.Point">
+            <summary>Defines a location with an x-coordinate, a y-coordinate, 
+            a character to represent the point on the map, and accessibility</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.#ctor">
+            <summary>Default point</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.#ctor(System.Int32,System.Int32,System.Char)">
+            <param name="a">x-coordinate of the point</param>
+            <param name="b">y-coordinate of the point</param>
+            <param name="c">Character to represent this point on the map</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.IsAccessible">
+            <returns>Accessibility for the point</returns>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.SetAccessible(System.Boolean)">
+            <param name="b">Sets accessibility for a point</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.GetX">
+            <returns>Returns the x-coordinate for the point</returns>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.SetX(System.Int32)">
+            <param name="a">Sets the x-coordinate for the point</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.GetY">
+            <returns>Returns the y-coordinate for the point</returns>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.SetY(System.Int32)">
+            <param name="a">Sets the y-coordinate for the point</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.Forward">
+            <summary>Increases the y-coordinate by one</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.Back">
+            <summary>Decreases the y-coordinate by one</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.Left">
+            <summary>Decreases the x-coordinate by one</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.Right">
+            <summary>Increases the x-coordinate by one</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.MatchPoint(TextAdventure.Objects.Point)">
+            <summary>Checks if the given point equals this instance</summary>
+            <param name="p">Takes in an external point to compare</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.PointDistance(TextAdventure.Objects.Point,TextAdventure.Objects.Point)">
+            <summary>Finds the diagonal distance between two points</summary>
+            <param name="one">First point for distance</param>
+            <param name="two">Second point for distance</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.GetMapChar">
+            <summary>
+            Returns the map character for this point
+            </summary>
+            <returns>The point's _mapChar</returns>
+        </member>
+        <member name="M:TextAdventure.Objects.Point.SetMapChar(System.Char)">
+            <summary>
+            Sets the _mapChar to the given character
+            </summary>
+            <param name="c">The character that _mapChar will be set to</param>
+        </member>
+    </members>
+</doc>
