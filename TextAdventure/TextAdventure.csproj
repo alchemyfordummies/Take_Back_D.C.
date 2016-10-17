@@ -66,7 +66,9 @@
     <Compile Include="Objects\Consumable\Effect.cs" />
     <Compile Include="Objects\Equippable Item\IEquippable.cs" />
     <Compile Include="Objects\Equippable Item\Weapon\Gun.cs" />
+    <Compile Include="Objects\Equippable Item\Weapon\Pencil.cs" />
     <Compile Include="Objects\Equippable Item\Weapon\Sword.cs" />
+    <Compile Include="Objects\Explosion.cs" />
     <Compile Include="Objects\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
