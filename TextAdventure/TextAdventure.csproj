@@ -60,7 +60,6 @@
     <Compile Include="Numbers\RandomRand.cs" />
     <Compile Include="Objects\Equippable Item\Armor\Helmet.cs" />
     <Compile Include="Objects\Consumable\Container\Barrel.cs" />
-    <Compile Include="Objects\Consumable\Container\Box.cs" />
     <Compile Include="Objects\Consumable\Container\Chest.cs" />
     <Compile Include="Objects\Consumable\Container\IContainer.cs" />
     <Compile Include="Objects\Consumable\Effect.cs" />

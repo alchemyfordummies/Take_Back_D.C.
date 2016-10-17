@@ -95,11 +95,13 @@ namespace TextAdventure.Main_Files
 			var x = p.GetX();
 			var y = p.GetY();
 			var locations = r.GetLocations();
+            object location = locations[x, y + 1];
 
             if (x == r.GetExit().GetX() && (y == r.GetExit().GetY() - 1)) _exiting = true;
             if (y + 1 >= r.GetHeight() - 1) return;
-			if (locations[x, y + 1] is Enemy) Fight(x, y + 1, h, locations);
-            else if (((Point) locations[x, y + 1]).IsAccessible()) p.Forward();
+            if (location is Enemy) Fight(x, y + 1, h, locations);
+            else if (location is Barrel || location is Chest) Open(x, y + 1, h, locations);
+            else if (((Point)location).IsAccessible()) p.Forward();
 		}
 
 		/// <summary>Looks to see if it's possible to move backward</summary>
@@ -111,11 +113,13 @@ namespace TextAdventure.Main_Files
 			var x = p.GetX();
 			var y = p.GetY();
 			var locations = r.GetLocations();
+            object location = locations[x, y - 1];
 
-			if (y - 1 <= 0) return;
-			if (locations[x, y - 1] is Enemy) Fight(x, y - 1, h, locations);
-            else if (x == r.GetExit().GetX() && (y == r.GetExit().GetY() + 1)) _exiting = true;
-            else if (((Point) locations[x, y - 1]).IsAccessible()) p.Back();
+            if (x == r.GetExit().GetX() && (y == r.GetExit().GetY() + 1)) _exiting = true;
+            if (y - 1 <= 0) return;
+			if (location is Enemy) Fight(x, y - 1, h, locations);
+            else if (location is Barrel || location is Chest) Open(x, y - 1, h, locations);
+            else if (((Point) location).IsAccessible()) p.Back();
 		}
 
 		/// <summary>Looks to see if it's possible to move left</summary>
@@ -127,11 +131,13 @@ namespace TextAdventure.Main_Files
 			var x = p.GetX();
 			var y = p.GetY();
 			var locations = r.GetLocations();
+            var location = locations[x - 1, y];
 
-			if (x - 1 <= 0) return;
-			if (locations[x - 1, y] is Enemy) Fight(x - 1, y, h, locations);
-            else if (x == r.GetExit().GetX() + 1 && (y == r.GetExit().GetY())) _exiting = true;
-            else if (((Point) locations[x - 1, y]).IsAccessible()) p.Left();
+            if (x == r.GetExit().GetX() + 1 && (y == r.GetExit().GetY())) _exiting = true;
+            if (x - 1 <= 0) return;
+			if (location is Enemy) Fight(x - 1, y, h, locations);
+            else if (location is Barrel || location is Chest) Open(x - 1, y, h, locations);
+            else if (((Point) location).IsAccessible()) p.Left();
 		}
 
 		/// <summary>Looks to see if it's possible to move right</summary>
@@ -143,11 +149,13 @@ namespace TextAdventure.Main_Files
 			var x = p.GetX();
 			var y = p.GetY();
 			var locations = r.GetLocations();
+            object location = locations[x + 1, y];
 
-			if (x + 1 >= r.GetWidth() - 1) return;
-			if (locations[x + 1, y] is Enemy) Fight(x + 1, y, h, locations);
-            else if (x == r.GetExit().GetX() - 1 && (y == r.GetExit().GetY())) _exiting = true;
-            else if (((Point) locations[x + 1, y]).IsAccessible()) p.Right();
+            if (x == r.GetExit().GetX() - 1 && (y == r.GetExit().GetY())) _exiting = true;
+            if (x + 1 >= r.GetWidth() - 1) return;
+			if (location is Enemy) Fight(x + 1, y, h, locations);
+            else if (location is Barrel || location is Chest) Open(x + 1, y, h, locations);
+            else if (((Point) location).IsAccessible()) p.Right();
 		}
 
 		/// <summary>Prompts the user for quitting, then quits on "yes"</summary>
@@ -296,6 +304,22 @@ namespace TextAdventure.Main_Files
 			}
 
 			else Globals.IsGameDone = true;
+        }
+
+        /// <summary>Handles opening a container</summary>
+		/// <param name="x">x-coordinate of the point</param>
+		/// <param name="y">y-coordinate of the point</param>
+		/// <param name="h">The user's character</param>
+		/// <param name="locations">The object array from the current room</param>
+        public static void Open(int x, int y, Human h, object[,] locations)
+        {
+            var container = (IContainer)locations[x, y];
+            if (container.GetType() = "chest")
+            {
+                //Not quite right, need to figure out how to get the type. Maybe make container
+                //a regular class, then have type be a thing in there. Next, have barrel and 
+                //chest inherit from there.
+            }
         }
 
         /// <summary>
