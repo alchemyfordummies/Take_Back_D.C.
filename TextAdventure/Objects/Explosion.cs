@@ -7,16 +7,21 @@ namespace TextAdventure.Objects
     {
         int damage;
 
-        public Explosion()
+        public Explosion(Human h)
         {
-            int ceiling = 0; //= Hitpoints/2;
+            int ceiling = (int)(h.Hitpoints / 1.5);
             damage = explosionDamage(ceiling);
         }
 
-        protected int explosionDamage(int ceiling)
+        public int explosionDamage(int ceiling)
         {
             var rand = new Random();
             return rand.Next(0, ceiling+1);
+        }
+
+        public int getDamage()
+        {
+            return damage;
         }
     }
 }

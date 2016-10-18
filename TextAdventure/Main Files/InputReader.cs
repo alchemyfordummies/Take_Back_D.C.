@@ -317,14 +317,30 @@ namespace TextAdventure.Main_Files
 		/// <param name="locations">The object array from the current room</param>
         public static void Open(int x, int y, Human h, object[,] locations, string str)
         {
-            int rand = (new Random()).Next(0, 1000);
+            var randGen = new Random();
+            int rand = randGen.Next(0, 1000);
             var container = (IContainer)locations[x, y];
             if (str == "barrel")
             {
-
-            } else
+                int temp = randGen.Next(0, 1000);
+                if (temp > 874)
+                {
+                    Explosion exp = new Explosion(h);
+                    int damage = exp.getDamage();
+                    h.Hitpoints -= damage;
+                    Console.WriteLine("It was a trap! The barrel exploded for " +
+                                      damage + " damage");
+                }
+                else
+                {
+                    Loot.chooseBarrelLoot(h, temp);
+                    //gotta do something after this
+                }
+            }
+            else
             {
-
+                Loot.chooseChestLoot(h, randGen.Next(0, 1000));
+                //gotta do something here too
             }
         }
 
