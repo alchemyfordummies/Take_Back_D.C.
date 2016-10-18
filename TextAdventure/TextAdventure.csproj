@@ -68,6 +68,7 @@
     <Compile Include="Objects\Equippable Item\Weapon\Pencil.cs" />
     <Compile Include="Objects\Equippable Item\Weapon\Sword.cs" />
     <Compile Include="Objects\Explosion.cs" />
+    <Compile Include="Objects\Loot.cs" />
     <Compile Include="Objects\Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,6 +87,9 @@
     </Content>
     <Content Include="TextFiles\RoomOneSystemView.txt" />
     <Content Include="TextFiles\toDo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

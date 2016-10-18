@@ -100,7 +100,8 @@ namespace TextAdventure.Main_Files
             if (x == r.GetExit().GetX() && (y == r.GetExit().GetY() - 1)) _exiting = true;
             if (y + 1 >= r.GetHeight() - 1) return;
             if (location is Enemy) Fight(x, y + 1, h, locations);
-            else if (location is Barrel || location is Chest) Open(x, y + 1, h, locations);
+            else if (location is Barrel) Open(x, y + 1, h, locations, "barrel");
+            else if (location is Chest) Open(x, y + 1, h, locations, "chest");
             else if (((Point)location).IsAccessible()) p.Forward();
 		}
 
@@ -118,7 +119,8 @@ namespace TextAdventure.Main_Files
             if (x == r.GetExit().GetX() && (y == r.GetExit().GetY() + 1)) _exiting = true;
             if (y - 1 <= 0) return;
 			if (location is Enemy) Fight(x, y - 1, h, locations);
-            else if (location is Barrel || location is Chest) Open(x, y - 1, h, locations);
+            else if (location is Barrel) Open(x, y - 1, h, locations, "barrel");
+            else if (location is Chest) Open(x, y - 1, h, locations, "chest");
             else if (((Point) location).IsAccessible()) p.Back();
 		}
 
@@ -136,7 +138,8 @@ namespace TextAdventure.Main_Files
             if (x == r.GetExit().GetX() + 1 && (y == r.GetExit().GetY())) _exiting = true;
             if (x - 1 <= 0) return;
 			if (location is Enemy) Fight(x - 1, y, h, locations);
-            else if (location is Barrel || location is Chest) Open(x - 1, y, h, locations);
+            else if (location is Barrel) Open(x - 1, y, h, locations, "barrel");
+            else if (location is Chest) Open(x -1, y, h, locations, "chest");
             else if (((Point) location).IsAccessible()) p.Left();
 		}
 
@@ -154,7 +157,8 @@ namespace TextAdventure.Main_Files
             if (x == r.GetExit().GetX() - 1 && (y == r.GetExit().GetY())) _exiting = true;
             if (x + 1 >= r.GetWidth() - 1) return;
 			if (location is Enemy) Fight(x + 1, y, h, locations);
-            else if (location is Barrel || location is Chest) Open(x + 1, y, h, locations);
+            else if (location is Barrel) Open(x + 1, y, h, locations, "barrel");
+            else if (location is Chest) Open(x + 1, y, h, locations, "chest");
             else if (((Point) location).IsAccessible()) p.Right();
 		}
 
@@ -311,14 +315,16 @@ namespace TextAdventure.Main_Files
 		/// <param name="y">y-coordinate of the point</param>
 		/// <param name="h">The user's character</param>
 		/// <param name="locations">The object array from the current room</param>
-        public static void Open(int x, int y, Human h, object[,] locations)
+        public static void Open(int x, int y, Human h, object[,] locations, string str)
         {
+            int rand = (new Random()).Next(0, 1000);
             var container = (IContainer)locations[x, y];
-            if (container.GetType() = "chest")
+            if (str == "barrel")
             {
-                //Not quite right, need to figure out how to get the type. Maybe make container
-                //a regular class, then have type be a thing in there. Next, have barrel and 
-                //chest inherit from there.
+
+            } else
+            {
+
             }
         }
 

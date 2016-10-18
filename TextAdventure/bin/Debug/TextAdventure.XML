@@ -194,11 +194,17 @@
             </summary>
             <returns>Returns the user's brutishness</returns>
         </member>
+        <member name="M:TextAdventure.Living_Critter.Human.SetBrutishness(System.Int32)">
+            <param name="i">Amount to increase brutishness by</param>
+        </member>
         <member name="M:TextAdventure.Living_Critter.Human.GetWillpower">
             <summary>
             Getter for willpower
             </summary>
             <returns>Returns the user's willpower</returns>
+        </member>
+        <member name="M:TextAdventure.Living_Critter.Human.SetWillpower(System.Int32)">
+            <param name="i">Amount to increase willpower by</param>
         </member>
         <member name="M:TextAdventure.Living_Critter.Human.GetEndurance">
             <summary>
@@ -329,6 +335,13 @@
         </member>
         <member name="M:TextAdventure.Main_Files.InputReader.Fight(System.Int32,System.Int32,TextAdventure.Living_Critter.Human,System.Object[0:,0:])">
             <summary>Carries out the combat</summary>
+            <param name="x">x-coordinate of the point</param>
+            <param name="y">y-coordinate of the point</param>
+            <param name="h">The user's character</param>
+            <param name="locations">The object array from the current room</param>
+        </member>
+        <member name="M:TextAdventure.Main_Files.InputReader.Open(System.Int32,System.Int32,TextAdventure.Living_Critter.Human,System.Object[0:,0:])">
+            <summary>Handles opening a container</summary>
             <param name="x">x-coordinate of the point</param>
             <param name="y">y-coordinate of the point</param>
             <param name="h">The user's character</param>
@@ -495,19 +508,16 @@
         <member name="M:TextAdventure.Objects.Consumable.Container.Barrel.IsTrapped">
             <summary>Decides if the barrel will be trapped or not</summary>
         </member>
-        <member name="T:TextAdventure.Objects.Consumable.Container.Box">
-            <summary>Another type of container, like a chest but can be booby-trapped</summary>
-        </member>
         <member name="T:TextAdventure.Objects.Consumable.Container.Chest">
             <summary>A new container with less storage but can't be booby-trapped</summary>
         </member>
-        <member name="F:TextAdventure.Objects.Consumable.Container.Chest._type">
+        <member name="F:TextAdventure.Objects.Consumable.Container.Chest.type">
             <summary>The type of container, barrel in this case</summary>
         </member>
-        <member name="F:TextAdventure.Objects.Consumable.Container.Chest._capacity">
+        <member name="F:TextAdventure.Objects.Consumable.Container.Chest.capacity">
             <summary>Says how many items the </summary>
         </member>
-        <member name="F:TextAdventure.Objects.Consumable.Container.Chest._location">
+        <member name="F:TextAdventure.Objects.Consumable.Container.Chest.location">
             <summary></summary>
         </member>
         <member name="M:TextAdventure.Objects.Consumable.Container.Chest.#ctor(TextAdventure.Objects.Point)">
@@ -533,6 +543,45 @@
             <summary>Takes the buff and curse value and initializes the effect</summary>
             <param name="c">Curse value</param>
             <param name="b">Buff value</param>
+        </member>
+        <member name="T:TextAdventure.Objects.Equippable_Item.Weapon.Gun">
+            <summary>
+            Defines the gun weapon. Has three different types to do different
+            amounts of damage. Causes a slight increase in brutishness.
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Gun.#ctor(System.String,TextAdventure.Living_Critter.Human)">
+            <summary>Constructor for a gun</summary>
+            <param name="s">The type of gun</param>
+            <param name="h">Human character to modify</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Gun.addDamage(TextAdventure.Living_Critter.Human)">
+            <summary>Adds that amount of damage to the character</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Gun.adjustStats(TextAdventure.Living_Critter.Human)">
+            <summary>Changes the specified stats by the specified amount</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Pencil.#ctor(TextAdventure.Living_Critter.Human)">
+            <summary>Constructor for a sword</summary>
+            <param name="s">The type of sword</param>
+            <param name="h">Human character to modify</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Pencil.addDamage(TextAdventure.Living_Critter.Human)">
+            <summary>Adds that amount of damage to the character</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Pencil.adjustStats(TextAdventure.Living_Critter.Human)">
+            <summary>Changes the specified stats by the specified amount</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Sword.#ctor(System.String,TextAdventure.Living_Critter.Human)">
+            <summary>Constructor for a sword</summary>
+            <param name="s">The type of sword</param>
+            <param name="h">Human character to modify</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Sword.addDamage(TextAdventure.Living_Critter.Human)">
+            <summary>Adds that amount of damage to the character</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Sword.adjustStats(TextAdventure.Living_Critter.Human)">
+            <summary>Changes the specified stats by the specified amount</summary>
         </member>
         <member name="T:TextAdventure.Objects.Point">
             <summary>Defines a location with an x-coordinate, a y-coordinate, 

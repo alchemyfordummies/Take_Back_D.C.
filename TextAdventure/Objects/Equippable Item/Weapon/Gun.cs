@@ -25,7 +25,7 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
                     damage = 16;
                     brutishnessAdded = 5;
                     break;
-                default:
+                case "normal_gun":
                     damage = 9;
                     brutishnessAdded = 2;
                     break;

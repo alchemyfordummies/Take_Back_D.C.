@@ -7,9 +7,9 @@ namespace TextAdventure.Objects
     {
         int damage;
 
-        public Explosion(Human h)
+        public Explosion()
         {
-            int ceiling = h.Hitpoints/2;
+            int ceiling = 0; //= Hitpoints/2;
             damage = explosionDamage(ceiling);
         }
 
