@@ -25,7 +25,9 @@ namespace TextAdventure.Objects
         public static object chooseChestLoot(Human h, int n)
         {
             //if (n > )
-            return 0;
+            if (n > 549) return generateSword(h, randGen.Next(0, 1000));
+            else if (n > 249) return generateGun(h, randGen.Next(0, 1000));
+            else return generatePencil(h);
         }
 
         /// <summary>

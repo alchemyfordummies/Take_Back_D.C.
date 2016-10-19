@@ -1,9 +1,11 @@
-﻿using TextAdventure.Living_Critter;
+﻿using System;
+using TextAdventure.Living_Critter;
 
 namespace TextAdventure.Objects.Equippable_Item.Weapon
 {
-    class Pencil
+    class Pencil : IEquippable
     {
+        //basic variables for our class
         int damage;
         int brutishnessChanged;
 
@@ -27,6 +29,12 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
         public void adjustStats(Human h)
         {
             h.SetBrutishness(brutishnessChanged);
+        }
+
+        /// <summary>Tells the user they've received a new pencil</summary>
+        public void printMessage()
+        {
+            Console.WriteLine("You've received a new pencil!");
         }
     }
 }

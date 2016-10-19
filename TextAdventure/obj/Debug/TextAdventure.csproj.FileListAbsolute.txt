@@ -4,3 +4,6 @@ C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\bin\Debug\TextAdve
 C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\bin\Debug\TextAdventure.pdb
 C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.exe
 C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.pdb
+C:\Users\Livingston\Source\Repos\Take_Back_D.C\TextAdventure\bin\Debug\TextAdventure.XML
+C:\Users\Livingston\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.exe
+C:\Users\Livingston\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.pdb

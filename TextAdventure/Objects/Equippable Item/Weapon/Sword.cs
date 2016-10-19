@@ -1,11 +1,14 @@
-﻿using TextAdventure.Living_Critter;
+﻿using System;
+using TextAdventure.Living_Critter;
 
 namespace TextAdventure.Objects.Equippable_Item.Weapon
 {
-    class Sword
+    class Sword : IEquippable
     {
+        //Basic variables for the class
         int damage;
         int brutishnessChanged;
+        string type;
 
         /// <summary>Constructor for a sword</summary>
         /// <param name="s">The type of sword</param>
@@ -17,14 +20,17 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
                 case "machete":
                     damage = 6;
                     brutishnessChanged = 8;
+                    type = "machete";
                     break;
                 case "katana":
                     damage = 10;
                     brutishnessChanged = 1;
+                    type = "katana";
                     break;
                 case "normal_sword":
                     damage = 5;
                     brutishnessChanged = 6;
+                    type = "sword";
                     break;
             }
 
@@ -41,6 +47,14 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
         public void adjustStats(Human h)
         {
             h.SetBrutishness(brutishnessChanged + 5);
+        }
+
+        /// <summary>
+        /// Prints to the user what item they've received
+        /// </summary>
+        public void printMessage()
+        {
+            Console.WriteLine("You've received a new " + type + "!");
         }
     }
 }

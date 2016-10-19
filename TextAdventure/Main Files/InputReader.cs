@@ -4,6 +4,7 @@ using TextAdventure.Living_Critter;
 using TextAdventure.Map;
 using TextAdventure.Objects;
 using TextAdventure.Objects.Consumable.Container;
+using TextAdventure.Objects.Equippable_Item.Weapon;
 
 namespace TextAdventure.Main_Files
 {
@@ -317,6 +318,7 @@ namespace TextAdventure.Main_Files
 		/// <param name="locations">The object array from the current room</param>
         public static void Open(int x, int y, Human h, object[,] locations, string str)
         {
+            object loot = 3;
             var randGen = new Random();
             int rand = randGen.Next(0, 1000);
             var container = (IContainer)locations[x, y];
@@ -331,16 +333,14 @@ namespace TextAdventure.Main_Files
                     Console.WriteLine("It was a trap! The barrel exploded for " +
                                       damage + " damage");
                 }
-                else
-                {
-                    Loot.chooseBarrelLoot(h, temp);
-                    //gotta do something after this
-                }
+                else loot = Loot.chooseBarrelLoot(h, temp);
             }
-            else
+            else loot = Loot.chooseChestLoot(h, randGen.Next(0, 1000));
+            if (loot != (object)3)
             {
-                Loot.chooseChestLoot(h, randGen.Next(0, 1000));
-                //gotta do something here too
+                if (Loot.getGun()) ((Gun)loot).printMessage();
+                if (Loot.getSword()) ((Sword)loot).printMessage();
+                if (Loot.getPencil()) ((Pencil)loot).printMessage();
             }
         }
 

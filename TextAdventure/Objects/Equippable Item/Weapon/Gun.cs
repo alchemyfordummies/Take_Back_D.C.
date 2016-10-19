@@ -1,4 +1,5 @@
-﻿using TextAdventure.Living_Critter;
+﻿using System;
+using TextAdventure.Living_Critter;
 
 namespace TextAdventure.Objects.Equippable_Item.Weapon
 {
@@ -10,6 +11,7 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
     {
         int damage;
         int brutishnessAdded;
+        string type;
 
         /// <summary>Constructor for a gun</summary>
         /// <param name="s">The type of gun</param>
@@ -20,14 +22,17 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
             {
                 case "gold":
                     damage = 12;
+                    type = "golden gun";
                     break;
                 case "wild":
                     damage = 16;
                     brutishnessAdded = 5;
+                    type = "wild gun";
                     break;
                 case "normal_gun":
                     damage = 9;
                     brutishnessAdded = 2;
+                    type = "gun";
                     break;
             }
 
@@ -44,6 +49,14 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
         public void adjustStats(Human h)
         {
             h.SetBrutishness(brutishnessAdded + 2);
+        }
+
+        /// <summary>
+        /// Prints to the user what item they've received
+        /// </summary>
+        public void printMessage()
+        {
+            Console.WriteLine("You've received a new " + type + "!");
         }
     }
 }

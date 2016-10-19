@@ -6,5 +6,6 @@ namespace TextAdventure.Objects.Equippable_Item
     {
         void addDamage(Human h);
         void adjustStats(Human h);
+        void printMessage();
     }
 }
