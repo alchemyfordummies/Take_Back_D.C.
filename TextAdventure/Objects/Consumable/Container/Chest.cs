@@ -8,8 +8,6 @@ namespace TextAdventure.Objects.Consumable.Container
     {
         /// <summary>The type of container, barrel in this case</summary>
         private readonly string type;
-        /// <summary>Says how many items the </summary>
-        private readonly int capacity;
         /// <summary></summary>
         private readonly Point location;
 
@@ -18,16 +16,7 @@ namespace TextAdventure.Objects.Consumable.Container
         public Chest(Point p)
         {
             type = "chest";
-            capacity = 4;
             location = p;
-            Explosion ex = new Explosion();
-
-            Random rand = new Random();
-            int chance = rand.Next(0, 100);
-            if (chance > 92)
-            {
-
-            }
         }
     }
 }

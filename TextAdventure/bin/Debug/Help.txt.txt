@@ -1,0 +1,7 @@
+map: prints out the map again
+quit: will quit the game
+level: prints your character's current level
+health: prints your character's current health
+stamina: prints your character's current stamina
+stats: prints the rest of your character's current stats
+help: prints the help file (duh)

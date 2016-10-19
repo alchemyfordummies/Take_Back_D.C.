@@ -105,8 +105,10 @@ namespace TextAdventure.Living_Critter
 	    /// <param name="h">Takes a human to carry out the attack</param>
         public void Attack(Human h)
         {
-	        h.Hitpoints -= DamageDone();
-	        if (h.Hitpoints < 0) h.Hitpoints = 0;
+            int damage = DamageDone();
+	        h.Hitpoints -= damage;
+            Console.WriteLine("You took " + damage + " points of damage");
+            if (h.Hitpoints < 0) h.Hitpoints = 0;
         }
 
         /// <summary>Yet to be determined</summary>

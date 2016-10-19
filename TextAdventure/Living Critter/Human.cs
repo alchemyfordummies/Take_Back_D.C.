@@ -236,7 +236,9 @@ namespace TextAdventure.Living_Critter
 	    /// <param name="e">The enemy being attacked</param>
         public void Attack(Enemy e)
         {
-	        e.Hitpoints -= DamageDone();
+            int damage = DamageDone();
+	        e.Hitpoints -= damage;
+            Console.WriteLine("Enemy took " + damage + " points of damage");
 	        if (e.Hitpoints < 0) e.Hitpoints = 0;
         }
 

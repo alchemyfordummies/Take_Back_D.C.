@@ -340,12 +340,13 @@
             <param name="h">The user's character</param>
             <param name="locations">The object array from the current room</param>
         </member>
-        <member name="M:TextAdventure.Main_Files.InputReader.Open(System.Int32,System.Int32,TextAdventure.Living_Critter.Human,System.Object[0:,0:])">
+        <member name="M:TextAdventure.Main_Files.InputReader.Open(System.Int32,System.Int32,TextAdventure.Living_Critter.Human,System.Object[0:,0:],System.String)">
             <summary>Handles opening a container</summary>
             <param name="x">x-coordinate of the point</param>
             <param name="y">y-coordinate of the point</param>
             <param name="h">The user's character</param>
             <param name="locations">The object array from the current room</param>
+            <param name="str">Defines if the object being opened is a barrel or a chest</param>
         </member>
         <member name="M:TextAdventure.Main_Files.InputReader.NextRoom(TextAdventure.Map.Room,TextAdventure.Living_Critter.Human)">
             <summary>
@@ -514,9 +515,6 @@
         <member name="F:TextAdventure.Objects.Consumable.Container.Chest.type">
             <summary>The type of container, barrel in this case</summary>
         </member>
-        <member name="F:TextAdventure.Objects.Consumable.Container.Chest.capacity">
-            <summary>Says how many items the </summary>
-        </member>
         <member name="F:TextAdventure.Objects.Consumable.Container.Chest.location">
             <summary></summary>
         </member>
@@ -561,6 +559,11 @@
         <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Gun.adjustStats(TextAdventure.Living_Critter.Human)">
             <summary>Changes the specified stats by the specified amount</summary>
         </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Gun.printMessage">
+            <summary>
+            Prints to the user what item they've received
+            </summary>
+        </member>
         <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Pencil.#ctor(TextAdventure.Living_Critter.Human)">
             <summary>Constructor for a sword</summary>
             <param name="s">The type of sword</param>
@@ -572,6 +575,9 @@
         <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Pencil.adjustStats(TextAdventure.Living_Critter.Human)">
             <summary>Changes the specified stats by the specified amount</summary>
         </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Pencil.printMessage">
+            <summary>Tells the user they've received a new pencil</summary>
+        </member>
         <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Sword.#ctor(System.String,TextAdventure.Living_Critter.Human)">
             <summary>Constructor for a sword</summary>
             <param name="s">The type of sword</param>
@@ -582,6 +588,40 @@
         </member>
         <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Sword.adjustStats(TextAdventure.Living_Critter.Human)">
             <summary>Changes the specified stats by the specified amount</summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Equippable_Item.Weapon.Sword.printMessage">
+            <summary>
+            Prints to the user what item they've received
+            </summary>
+        </member>
+        <member name="T:TextAdventure.Objects.Loot">
+            <summary>
+            Helper class for deciding what loot to generated based 
+            on a random number passed to it
+            </summary>
+        </member>
+        <member name="M:TextAdventure.Objects.Loot.chooseChestLoot(TextAdventure.Living_Critter.Human,System.Int32)">
+            <summary>
+            Chooses the loot from a chest
+            </summary>
+            <param name="h">Player character</param>
+            <param name="n">Random number passed to it</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Loot.chooseBarrelLoot(TextAdventure.Living_Critter.Human,System.Int32)">
+            <summary>
+            Chooses the loot from a barrel
+            </summary>
+            <param name="h">Player character</param>
+            <param name="n">Random number passed to it</param>
+        </member>
+        <member name="M:TextAdventure.Objects.Loot.generateGun(TextAdventure.Living_Critter.Human,System.Int32)">
+            <summary>
+            Generates the specified weapon and adds its stats to the 
+            player character
+            </summary>
+            <param name="h">The player character</param>
+            <param name="n"> the random number passed to it</param>
+            <returns></returns>
         </member>
         <member name="T:TextAdventure.Objects.Point">
             <summary>Defines a location with an x-coordinate, a y-coordinate, 

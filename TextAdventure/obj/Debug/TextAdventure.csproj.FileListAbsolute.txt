@@ -7,3 +7,6 @@ C:\Users\Tim Froberg\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdve
 C:\Users\Livingston\Source\Repos\Take_Back_D.C\TextAdventure\bin\Debug\TextAdventure.XML
 C:\Users\Livingston\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.exe
 C:\Users\Livingston\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.pdb
+C:\Users\Livingston\Source\Repos\Take_Back_D.C\TextAdventure\obj\Debug\TextAdventure.csprojResolveAssemblyReference.cache
+C:\Users\Livingston\Source\Repos\Take_Back_D.C\TextAdventure\bin\Debug\TextAdventure.exe
+C:\Users\Livingston\Source\Repos\Take_Back_D.C\TextAdventure\bin\Debug\TextAdventure.pdb

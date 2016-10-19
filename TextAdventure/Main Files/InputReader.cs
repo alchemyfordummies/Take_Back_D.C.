@@ -291,10 +291,11 @@ namespace TextAdventure.Main_Files
 		private static void Fight(int x, int y, Human h, object[,] locations)
 		{
 			var enemy = (Enemy) locations[x, y];
+            Console.WriteLine("Enemy has " + enemy.Hitpoints + ", You have " + h.Hitpoints);
 			while (h.Hitpoints > 0 && enemy.Hitpoints > 0)
-			{
-                Console.WriteLine(enemy.Hitpoints + ", " + h.Hitpoints);
+			{    
                 h.Attack(enemy);
+                System.Threading.Thread.Sleep(250);
 			    if (enemy.Hitpoints > 0) enemy.Attack(h);
 			    System.Threading.Thread.Sleep(1000);
 			}
@@ -316,6 +317,7 @@ namespace TextAdventure.Main_Files
 		/// <param name="y">y-coordinate of the point</param>
 		/// <param name="h">The user's character</param>
 		/// <param name="locations">The object array from the current room</param>
+        /// <param name="str">Defines if the object being opened is a barrel or a chest</param>
         public static void Open(int x, int y, Human h, object[,] locations, string str)
         {
             object loot = 3;
@@ -325,7 +327,7 @@ namespace TextAdventure.Main_Files
             if (str == "barrel")
             {
                 int temp = randGen.Next(0, 1000);
-                if (temp > 874)
+                if (temp > 1)
                 {
                     Explosion exp = new Explosion(h);
                     int damage = exp.getDamage();
@@ -342,6 +344,8 @@ namespace TextAdventure.Main_Files
                 if (Loot.getSword()) ((Sword)loot).printMessage();
                 if (Loot.getPencil()) ((Pencil)loot).printMessage();
             }
+
+            locations[x, y] = new Point(x, y);
         }
 
         /// <summary>
