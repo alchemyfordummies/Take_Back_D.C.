@@ -36,6 +36,7 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
                     break;
             }
 
+            //Don't do this automatically, call this somewhere else
             addDamage(h);
         }
 
@@ -57,6 +58,11 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
         public void printMessage()
         {
             Console.WriteLine("You've received a new " + type + "!");
+        }
+
+        public string getType()
+        {
+            return type;
         }
     }
 }

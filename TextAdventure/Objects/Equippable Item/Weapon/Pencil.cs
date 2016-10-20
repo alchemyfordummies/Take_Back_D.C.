@@ -16,6 +16,7 @@ namespace TextAdventure.Objects.Equippable_Item.Weapon
         {
             damage = 2;
             brutishnessChanged = 15;
+            //Don't do this automatically, call this somewhere else
             addDamage(h);
         }
 
